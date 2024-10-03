@@ -129,16 +129,144 @@
 ////这样才方便运算。
 //void test(int* arr)//ok？
 //{}
-void test(int* arr[5])//ok？
-{}
+//void test(int* arr[5])//ok？
+//{}
 //void test(int(*arr)[5])//ok？
 //{}
 //void test(int** arr)//ok？
 //{
 //	printf("%d ", *arr);
 //}
+//int main()
+//{
+//	int arr[3][5] = { 0 };
+//	test(arr);
+//}
+
+//void test(char** p)
+//{
+//	printf("%c\n", **(p+1));
+//}
+//int main()
+//{
+//	char c = 'b';
+//	char* pc = &c;
+//	char** ppc = &pc;
+//	char* arr[10] = {0};
+//	arr[0] = &c;
+//	char b = 'k';
+//	arr[1] = &b;
+//	/*test(&pc);
+//	test(ppc);*/
+//	test(arr);
+//	return 0;
+//}
+
+//void test()
+//{
+//	printf("hehe\n");
+//}
+//void main()
+//{
+//	printf("%p ", test);
+//	printf("%p ", &test);
+//	return;
+//}
+
+//int main()
+//{
+	/*int a[] = { 1,2,3,4 };
+	printf("%d\n", sizeof(a));
+	printf("%d\n", sizeof(a + 0));
+	printf("%d\n", sizeof(*a));
+	printf("%d\n", sizeof(a + 1));
+	printf("%d\n", sizeof(a[1]));
+	printf("%d\n", sizeof(&a));
+	printf("%d\n", sizeof(*&a));
+	printf("%d\n", sizeof(&a + 1));
+	printf("%d\n", sizeof(&a[0]));
+	printf("%d\n", sizeof(&a[0] + 1));*/
+
+	//字符数组
+	/*char arr[] = { 'a','b','c','d','e','f' };*/
+	/*printf("%d\n", sizeof(arr));
+	printf("%d\n", sizeof(arr + 0));
+	printf("%d\n", sizeof(*arr));
+	printf("%d\n", sizeof(arr[1]));
+	printf("%d\n", sizeof(&arr));
+	printf("%d\n", sizeof(&arr + 1));
+	printf("%d\n", sizeof(&arr[0] + 1));*/
+
+	//printf("%d\n", strlen(arr));
+	//printf("%d\n", strlen(arr + 0));
+	//printf("%d\n", strlen(*arr));
+	//printf("%d\n", strlen(arr[1]));
+	//printf("%d\n", strlen(&arr));
+	//printf("%d\n", strlen(&arr + 1));
+	//printf("%d\n", strlen(&arr[0] + 1));
+
+	//二维数组
+//	int a[3][4] = { 0 };
+//	printf("%d\n", sizeof(a));
+//	printf("%d\n", sizeof(a[0][0]));
+//	printf("%d\n", sizeof(a[0]));
+//	printf("%d\n", sizeof(a[0] + 1));
+//	printf("%d\n", sizeof(*(a[0] + 1)));
+//	printf("%d\n", sizeof(a + 1));
+//	printf("%d\n", sizeof(*(a + 1)));
+//	printf("%d\n", sizeof(&a[0] + 1));
+//	printf("%d\n", sizeof(*(&a[0] + 1)));
+//	printf("%d\n", sizeof(*a));
+//	printf("%d\n", sizeof(a[3]));
+//	return 0;
+//}
+//int main()
+//{
+//	int a[5] = { 1, 2, 3, 4, 5 };
+//	int* ptr = (int*)(&a + 1);
+//	printf("%d,%d", *(a + 1), *(ptr - 1));
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a[3][2] = { (0, 1), (2, 3), (4, 5) };
+//	int* p;
+//	p = a[0];
+//	printf("%d", p[0]);
+//	return 0;
+//}
+//int main()
+//{
+//	int aa[2][5] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//	int* ptr1 = (int*)(&aa + 1);
+//	int* ptr2 = (&(aa + 1)[0]);
+//	printf("%d,%d", *(ptr1 - 1), *(ptr2 - 1));
+//	return 0;
+//}
+//int main()
+//{
+//	int aa[2][3][2] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//	printf("%d\n", **(*aa+1));
+//	return 0;
+//}
+//int main()
+//{
+//	char* a[] = { "work","at","alibaba" };
+//	char** pa = a;
+//	pa++;
+//	printf("%s\n", *pa);
+//	return 0;
+//}
+
 int main()
 {
-	int arr[3][5] = { 0 };
-	test(arr);
+	char* c[] = { "ENTER","NEW","POINT","FIRST" };
+	char** cp[] = { c + 3,c + 2,c + 1,c };
+	char*** cpp = cp;
+	printf("%s\n", **++cpp);
+	printf("%s\n", *-- * ++cpp + 3);
+	printf("%s\n", *cpp[-2] + 3);
+	printf("%s\n", cpp[-1][-1] + 1);
+	return 0;
 }
