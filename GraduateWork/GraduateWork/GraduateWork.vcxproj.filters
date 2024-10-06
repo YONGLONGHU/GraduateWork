@@ -27,5 +27,8 @@
     <ClCompile Include="动态内存开辟.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="C++初步复习.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

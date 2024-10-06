@@ -104,15 +104,16 @@
 //	printf(str);
 //}
 
-void Getmem(char** p, int num)
-{
-	*p = (char*)malloc(num);
-}
-int main()
-{
-	char* ptr = NULL;
-	Getmem(&ptr, 100);
-	strcpy(ptr, "hell0");
-	printf(ptr);
-	return 0;
-}
+//void Getmem(char** p, int num)
+//{
+//	*p = (char*)malloc(num);
+//}
+//int main()
+//{
+//	char* ptr = NULL;
+//	Getmem(&ptr, 100);
+//	strcpy(ptr, "hell0");
+//	printf(ptr);
+//	return 0;
+//}
+
