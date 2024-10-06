@@ -210,29 +210,29 @@ int strcmp(const char* str1, const char* str2)
 //	return 0;
 //}
 
-int main()
-{
-	int* ptr = malloc(100);
-	if (ptr != NULL)
-	{
-		//业务处理
-	}
-	else
-	{
-		//exit(EXIT_FAILURE);
-	}
-	//扩展容量
-	//代码1
-	ptr = realloc(ptr, 1000);
-
-	//代码2
-	int* p = NULL;
-	p = realloc(ptr, 1000);
-	if (p != NULL)
-	{
-		ptr = p;
-	}
-	//业务处理
-	free(ptr);
-	return 0;
-}
+//int main()
+//{
+//	int* ptr = malloc(100);
+//	if (ptr != NULL)
+//	{
+//		//业务处理
+//	}
+//	else
+//	{
+//		//exit(EXIT_FAILURE);
+//	}
+//	//扩展容量
+//	//代码1
+//	ptr = realloc(ptr, 1000);
+//
+//	//代码2
+//	int* p = NULL;
+//	p = realloc(ptr, 1000);
+//	if (p != NULL)
+//	{
+//		ptr = p;
+//	}
+//	//业务处理
+//	free(ptr);
+//	return 0;
+//}
