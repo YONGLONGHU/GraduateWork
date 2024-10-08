@@ -354,42 +354,169 @@ using namespace std;
 //	d.operator<<(cout);
 //	return 0;
 //}
+//
+//class Date
+//{
+//	friend ostream& operator<<(ostream& _cout, const Date& d);
+//	friend istream& operator>>(istream& _cin, Date& d);
+//public:
+//	Date(int year, int month, int day)
+//		: _year(year)
+//		, _month(month)
+//		, _day(day)
+//	{}
+//
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//ostream& operator<<(ostream& _cout, const Date& d)
+//{
+//	_cout << d._year << "-" << d._month << "-" << d._day;
+//
+//	return _cout;
+//}
+//
+//istream& operator>>(istream& _cin, Date& d)
+//{
+//	_cin >> d._year;
+//	_cin >> d._month;
+//	_cin >> d._day;
+//
+//	return _cin;
+//}
+//int main()
+//{
+//	Date d(2019,2,33);
+//	cin >> d;
+//	cout << d << endl;
+//	return 0;
+//}
 
-class Date
-{
-	friend ostream& operator<<(ostream& _cout, const Date& d);
-	friend istream& operator>>(istream& _cin, Date& d);
+//友元类
+//class Date; // 前置声明
+//class Time
+//{
+//	friend class Date; // 声明日期类为时间类的友元类，则在日期类中就直接访问Time类中的私有成员变量
+//public:
+//	Time(int hour, int minute, int second)
+//		: _hour(hour)
+//		, _minute(minute)
+//		, _second(second)
+//	{}
+//
+//private:
+//	int _hour;
+//	int _minute;
+//	int _second;
+//};
+//class Date
+//{
+//public:
+//	Date(int year = 1900, int month = 1, int day = 1)
+//		: _year(year)
+//		, _month(month)
+//		, _day(day)
+//		,_t(0,0,0)
+//	{}
+//
+//	void SetTimeOfDate(int hour, int minute, int second)
+//	{
+//		// 直接访问时间类私有的成员变量
+//		_t._hour = hour;
+//		_t._minute = minute;
+//		_t._second = second;
+//	}
+//
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//	Time _t;
+//};
+
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//
+//int minJumps(vector<int>& nums) {
+//    int n = nums.size();
+//    if (n == 1) return 0;  // 已经在目标位置
+//
+//    int jumps = 0;  // 记录跳跃次数
+//    int farthest = 0;  // 当前可以跳到的最远位置
+//    int end = 0;  // 当前跳跃的边界
+//
+//    for (int i = 0; i < n - 1; ++i) {
+//        farthest = max(farthest, i + nums[i]);  // 更新最远位置
+//        if (i == end) {  // 到达当前跳跃边界，必须跳跃
+//            jumps++;
+//            end = farthest;  // 更新跳跃边界
+//        }
+//        if (end >= n - 1) {  // 如果已经可以到达终点
+//            break;
+//        }
+//    }
+//
+//    return jumps;
+//}
+//
+//int main() {
+//    vector<int> nums = { 3, 1, 1, 4, 3 };  // 输入数据
+//    cout << "最小跳跃次数: " << minJumps(nums) << endl;  // 输出结果
+//    return 0;
+//}
+
+//内部类
+//class A
+//{
+//private:
+//	static int k;
+//		int h;
+//public:
+//	class B
+//	{
+//	void foo(const A& a)
+//	{
+//		cout << k << endl;
+//		cout << a.h << endl;
+//	}
+//	};
+//};
+//int A::k = 0;
+//
+//int main()
+//{
+//	A::B b;
+//	b.foo(A());
+//	return 0;
+//}
+
+#include <iostream>
+using namespace std;
+
+class A {
 public:
-	Date(int year, int month, int day)
-		: _year(year)
-		, _month(month)
-		, _day(day)
-	{}
+    static int k; // 将 k 声明为公共的
+    int h;
 
-private:
-	int _year;
-	int _month;
-	int _day;
+    A() : h(0) {} // 提供一个默认构造函数
+
+    class B {
+    public:
+        void foo(const A& a) {
+            cout << k << endl;
+            cout << a.h << endl;
+        }
+    };
 };
-ostream& operator<<(ostream& _cout, const Date& d)
-{
-	_cout << d._year << "-" << d._month << "-" << d._day;
 
-	return _cout;
-}
+int A::k = 0; // 初始化静态成员变量
 
-istream& operator>>(istream& _cin, Date& d)
-{
-	_cin >> d._year;
-	_cin >> d._month;
-	_cin >> d._day;
-
-	return _cin;
-}
-int main()
-{
-	Date d(2019,2,33);
-	cin >> d;
-	cout << d << endl;
-	return 0;
+int main0() {
+    A::B b;
+    A a;
+    b.foo(a);
+    return 0;
 }
