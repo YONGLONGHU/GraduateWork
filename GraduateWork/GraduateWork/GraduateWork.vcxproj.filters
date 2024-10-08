@@ -30,5 +30,8 @@
     <ClCompile Include="C++初步复习.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="类的默认成员函数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
