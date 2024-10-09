@@ -24,8 +24,8 @@ int minJumps(vector<int>& nums) {
     return jumps;
 }
 
-int main() {
-    vector<int> nums = { 3, 1, 2, 2, 3, 3, 2, 4, 0, 2, 2, 0 };  // 输入数据
-    cout << "最小跳跃次数: " << minJumps(nums) << endl;  // 输出结果
-    return 0;
-}
+//int main() {
+//    vector<int> nums = { 3, 1, 2, 2, 3, 3, 2, 4, 0, 2, 2, 0 };  // 输入数据
+//    cout << "最小跳跃次数: " << minJumps(nums) << endl;  // 输出结果
+//    return 0;
+//}
