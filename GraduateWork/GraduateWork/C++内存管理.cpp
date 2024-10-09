@@ -120,12 +120,74 @@ T  Add(const T& left, const T& right)
 {
 	return left + right;
 }
-int main()
+//int main()
+//{
+//	int a1 = 10, a2 = 20;
+//	double d1 = 10.0, d2 = 20.0;
+//	Add(a1, a2);
+//	Add(d1, d2);
+//	Add(a1, (int)d1);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 10;
+//	double b = 3.345;
+//	Add<int>(a, b);
+//	return 0;
+//}
+
+//类模板
+template<typename T>
+class Vector
 {
-	int a1 = 10, a2 = 20;
-	double d1 = 10.0, d2 = 20.0;
-	Add(a1, a2);
-	Add(d1, d2);
-	Add(a1, (int)d1);
-	return 0;
+public:
+	Vector(size_t capacity=10)
+		:_pdata(new T[capacity])
+		,_size(0)
+		,_capacity(capacity)
+	{
+	}
+	~Vector();
+	void PushBack(const T& data);
+	void PopBack();
+	size_t Size() { return _size; }
+
+	T& operator[](size_t pos)
+	{
+		assert(pos < _size);
+		return _pData[pos];
+	}
+private:
+	T* _pData;
+	size_t _size;
+	size_t _capacity;
+};
+template<typename T>
+Vector<T>::~Vector()
+{
+	if (_pData)
+	{
+		delete[] _pData;
+		_size = _capacity = 0;
+	}
 }
+//void main()
+//{
+//	Vector<int> s1;
+//	Vector<double> s2;
+//}
+void Teststring2()
+{
+	string s;
+	// 测试reserve是否会改变string中有效元素个数
+	s.reserve(100);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	// 测试reserve参数小于string的底层空间大小时，是否会将空间缩小
+	s.reserve(50);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+}
+
