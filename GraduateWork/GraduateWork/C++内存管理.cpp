@@ -139,39 +139,39 @@ T  Add(const T& left, const T& right)
 
 //类模板
 template<typename T>
-class Vector
-{
-public:
-	Vector(size_t capacity=10)
-		:_pdata(new T[capacity])
-		,_size(0)
-		,_capacity(capacity)
-	{
-	}
-	~Vector();
-	void PushBack(const T& data);
-	void PopBack();
-	size_t Size() { return _size; }
-
-	T& operator[](size_t pos)
-	{
-		assert(pos < _size);
-		return _pData[pos];
-	}
-private:
-	T* _pData;
-	size_t _size;
-	size_t _capacity;
-};
-template<typename T>
-Vector<T>::~Vector()
-{
-	if (_pData)
-	{
-		delete[] _pData;
-		_size = _capacity = 0;
-	}
-}
+//class Vector
+//{
+//public:
+//	Vector(size_t capacity=10)
+//		:_pdata(new T[capacity])
+//		,_size(0)
+//		,_capacity(capacity)
+//	{
+//	}
+//	~Vector();
+//	void PushBack(const T& data);
+//	void PopBack();
+//	size_t Size() { return _size; }
+//
+//	T& operator[](size_t pos)
+//	{
+//		//assert(pos < _size);
+//		return _pData[pos];
+//	}
+//private:
+//	T* _pData;
+//	size_t _size;
+//	size_t _capacity;
+//};
+//template<typename T>
+//Vector<T>::~Vector()
+//{
+//	if (_pData)
+//	{
+//		delete[] _pData;
+//		_size = _capacity = 0;
+//	}
+//}
 //void main()
 //{
 //	Vector<int> s1;
@@ -190,4 +190,156 @@ void Teststring2()
 	cout << s.size() << endl;
 	cout << s.capacity() << endl;
 }
+#include<string>
+//int main0()
+//{
+//	/*string s1;
+//	string s2("hello world.");
+//	string s3(s2);*/
+//	string s("yonglong");
+//	cout << s.size() << endl;
+//	cout << s.length() << endl;
+//	cout << s.capacity() << endl;
+//	cout << s << endl;
+//
+//	s.clear();
+//	cout << s.size() << endl;
+//	cout << s.capacity() << endl;
+//
+//	s.resize(10, 'a');
+//	cout << s.size() << endl;
+//	cout << s.capacity() << endl;
+//	cout << s << endl;
+//
+//	s.resize(15);
+//	cout << s.size() << endl;
+//	cout << s.capacity() << endl;
+//	cout << s << endl;
+//
+//	s.resize(5);
+//	cout << s.size() << endl;
+//	cout << s.capacity() << endl;
+//	cout << s << endl;
+//
+//	return 0;
+//}
+void TestPushBackReserve()
+{
+	string s;
+	s.reserve(100);
+	size_t sz = s.capacity();
+
+	cout << "making s grow:\n";
+	for (int i = 0; i < 100; ++i)
+	{
+		s.push_back('c');
+		if (sz != s.capacity())
+		{
+			sz = s.capacity();
+			cout << "capacity changed: " << sz << '\n';
+			cout << s << endl;
+		}
+	}
+}
+int main1()
+{
+	/*string s;
+	s.reserve(100);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(50);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	return 0;*/
+
+	/*string s;
+	size_t sz = s.capacity();
+	cout << "making s grow:\n";
+	for (int i=0; i < 100; ++i)
+	{
+		s.push_back('c');
+		if (sz != s.capacity())
+		{
+			sz = s.capacity();
+			cout << "capacity changed: " << sz << endl;
+		}
+	}*/
+	TestPushBackReserve();
+	return 0;
+}
+
+//void main()
+//{
+//	string s1("hello world.");
+//	const string s2("hello yonglogn");
+//	cout << s1 << " " <<s2<< endl;
+//	cout << s1[0] << " " << s2[0] << endl;
+//
+//	s1[0] = 'H';
+//	cout << s1 << endl;
+//}
+
+//void main()
+//{
+//	string s("hello bit.");
+//	//for+operator[]
+//	for (size_t i = 0; i < s.size(); ++i)
+//	{
+//		cout << s[i] << endl;
+//	}
+//
+//	//迭代器
+//	string::iterator it = s.begin();
+//	while (it != s.end())
+//	{
+//		cout << *it << endl;
+//		++it;
+//	}
+//
+//	string::reverse_iterator rit = s.rbegin();
+//	while (rit != s.rend())
+//	{
+//		cout << *rit << endl;
+//	}
+//
+//	//范围for
+//	for (auto ch : s)
+//		cout << ch << endl;
+//}
+
+//void main()
+//{
+//	string str;
+//	str.push_back(' ');
+//	str.append("hello");
+//	str += 'b';
+//	str += "it";
+//	cout << str << endl;
+//	cout << str.c_str() << endl;//以c语言的方式打印字符串
+//
+//	string file1("string.cpp");
+//	size_t pos = file1.rfind('.');
+//	string suffix(file1.substr(pos, file1.size() - pos));
+//	cout << suffix << endl;
+//
+//	string url("http://www.cplusplus.com/reference/string/string/find/");
+//	cout << url << endl;
+//	size_t start = url.find("://");
+//	if (start == string::npos)
+//	{
+//		cout << "invalid url" << endl;
+//		return;
+//	}
+//	start += 3;
+//	size_t finish = url.find('/', start);
+//	string address = url.substr(start, finish - start);
+//	cout << address << endl;
+//
+//	// 删除url的协议前缀
+//	pos = url.find("://");
+//	url.erase(0, pos + 3);
+//	cout << url << endl;
+//
+//}
 
