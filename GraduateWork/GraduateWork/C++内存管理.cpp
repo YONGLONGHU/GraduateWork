@@ -342,4 +342,146 @@ int main1()
 //	cout << url << endl;
 //
 //}
+//class Solution 
+//{
+//public:
+//	string reverseOnlyLetters(string S) 
+//	{
+//		char* pLeft = (char*)S.c_str();
+//		char* pRight = pLeft + (S.size() - 1);
+//		while (pLeft < pRight)
+//		{
+//			// 从前往后找，找到一个字母
+//			while (pLeft < pRight)
+//			{
+//				// 找到有效字母后停下来
+//				if (isalpha(*pLeft))
+//					break;
+//				++pLeft;
+//			}
+//			// 从后往前找，找一个字母
+//			while (pLeft < pRight)
+//			{
+//				// 找到有效字母后停下来
+//				if (isalpha(*pRight))
+//					break;
+//				--pRight;
+//			}
+//			if (pLeft < pRight)
+//			{
+//				swap(*pLeft, *pRight);
+//				++pLeft;
+//				--pRight;
+//			}
+//		}
+//		return S;
+//	}
+//};
+//找字符串中第一个只出现一次的字符
+//class Solution
+//{
+//public:
+//	int firstUniqChar(string s)
+//	{
+//		//统计每个字符出现的次数
+//		int count[256] = { 0 };
+//		int size = s.size();
+//		for (int i = 0; i < size; ++i)
+//		{
+//			count[s[i]] += 1;
+//		}
+//		for (int i = 0; i < size; ++i)
+//		{
+//			if (1 == count[s[i]])
+//				return i;
+//
+//			return -1;
+//		}
+//	}
+//};
 
+#include<iostream>
+#include <cassert>
+//int main()
+//{
+//	string line;
+//	//不要使用cin>>line,遇到空格就结束了
+//	while (getline(cin, line))
+//	{
+//		size_t pos = line.rfind(' ');
+//		cout << line.size() - pos - 1 << endl;
+//	}
+//	return 0;
+//}
+
+//验证一个字符串是否回文
+//class Solusion
+//{
+//public:
+//	bool isLetterOrNumber(char ch)
+//	{
+//		return (ch >= '0' && ch <= '9')
+//			|| (ch >= 'a' && ch <= 'z')
+//			|| (ch >= 'A' && ch <= 'Z');
+//	}
+//	bool isPalindrome(string s) {
+//		// 先小写字母转换成大写，再进行判断
+//		for (auto& ch : s)
+//		{
+//			if (ch >= 'a' && ch <= 'z')
+//				ch -= 32;
+//		}
+//
+//		int begin = 0, end = s.size() - 1;
+//		while (begin < end)
+//		{
+//			while (begin < end && !isLetterOrNumber(s[begin]))
+//				++begin;
+//
+//			while (begin < end && !isLetterOrNumber(s[end]))
+//				--end;
+//
+//			if (s[begin] != s[end])
+//			{
+//				return false;
+//			}
+//			else
+//			{
+//
+//				++begin;
+//				--end;
+//			}
+//		}
+//
+//		return true;
+//	}
+//};
+//class String
+//{
+//public:
+//	String(const char* str = " ")
+//	{
+//		if (nullptr == str)
+//		{
+//			assert(false);
+//			return;
+//		}
+//		_str = new char[strlen(str) + 1];
+//		strcpy(_str, str);
+//	}
+//	~String()
+//	{
+//		if (_str)
+//		{
+//			delete[]_str;
+//			_str = nullptr;
+//		}
+//	}
+//private:
+//	char* _str;
+//};
+//void test()
+//{
+//	String s1("hello!!!");
+//	String s2(s1);
+//}
