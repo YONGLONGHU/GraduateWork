@@ -449,27 +449,169 @@
 //    return 0;
 //}
 //
+//
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//
+//const int MOD = 1e9 + 7;
+//
+//int main() {
+//    int n, m;
+//    cin >> n >> m;
+//    vector<vector<long long>> dp(n + 1, vector<long long>(m + 1, 0));
+//    dp[0][0] = 1;
+//
+//    for (int i = 1; i <= n; ++i) {
+//        for (int j = 0; j <= m; ++j) {
+//            for (int k = 1; k <= m; ++k) {
+//                dp[i][j ^ k] = (dp[i][j ^ k] + dp[i - 1][j]) % MOD;
+//            }
+//        }
+//    }
+//
+//    cout << dp[n][m] << endl;
+//    return 0;
+//}
+//#include<iostream>
+//#include <cassert>
+//#include "C++ÄÚ´æ¹ÜÀí.cpp"
+//using namespace std;
+//class string
+//{
+//public:
+//	string(const char* ptr = " ")
+//	{
+//		if (ptr == nullptr)
+//		{
+//			assert(false);
+//			return;
+//		}
+//		_ptr = new char[strlen(ptr) + 1];
+//		strcpy(_ptr, ptr);
+//	}
+//
+//	string(const string& s)
+//		:_ptr(new char[strlen(s._ptr) + 1])
+//	{
+//		strcpy(_ptr, s._ptr);
+//	}
+//	string& operator=(const string& s)
+//	{
+//		if (this != &s)
+//		{
+//			char* p = new char[strlen(s._ptr) + 1];
+//			strcpy(p, s._ptr);
+//			delete[]_ptr;
+//			_ptr = p;
+//		}
+//		return *this;
+//	}
+//
+//	~string()
+//	{
+//		if (_ptr)
+//		{
+//			delete[]_ptr;
+//			_ptr = nullptr;
+//		}
+//	}
+//private:
+//	char* _ptr;
+//};
 
-#include <iostream>
-#include <vector>
-using namespace std;
-
-const int MOD = 1e9 + 7;
-
-int main() {
-    int n, m;
-    cin >> n >> m;
-    vector<vector<long long>> dp(n + 1, vector<long long>(m + 1, 0));
-    dp[0][0] = 1;
-
-    for (int i = 1; i <= n; ++i) {
-        for (int j = 0; j <= m; ++j) {
-            for (int k = 1; k <= m; ++k) {
-                dp[i][j ^ k] = (dp[i][j ^ k] + dp[i - 1][j]) % MOD;
-            }
-        }
-    }
-
-    cout << dp[n][m] << endl;
-    return 0;
-}
+//class string {
+//	string(const char* ptr= " ")
+//	{
+//		if (ptr)
+//		{
+//			_ptr = new char[strlen(ptr) + 1];
+//			strcpy(_ptr, ptr);
+//		}
+//	}
+//	string(string& s)
+//		:_ptr(nullptr)
+//	{
+//		string strTmp(s._ptr);
+//		Swap(_ptr, strTmp);
+//	}
+//	string& operator=(string s)
+//	{
+//		Swap(_ptr, s._ptr);
+//		return *s;
+//	}
+//private:
+//	char* _ptr;
+//};
+//#include<iostream>
+//using namespace std;
+//class string
+//{
+//public:
+//	typedef char* iterator;
+//public:
+//	string(const char* str = " ")
+//	{
+//		_size = strlen(str);
+//		_capacity = _size;
+//		_str = new char[_capacity + 1];
+//		strcpy(_str, str);
+//	}
+//	/*string(const string& s)
+//	{
+//		_size = s._size;
+//		_capacity = _size;
+//		_str = new char[_capacity + 1];
+//		strcpy(_str, s._str);
+//	}*/
+//	string(const string& s)
+//		:_str(nullptr)
+//		, _size(0)
+//		,_capacity(0)
+//	{
+//		string tmp(s);
+//		this->Swap(tmp);
+//	}
+//	iterator begin()
+//	{
+//		return _str;
+//	}
+//	iterator end()
+//	{
+//		return _str + _size;
+//	}
+//	void push_back(char c)
+//	{
+//		if (_size == _capacity)
+//		{
+//			//Reserve(_capacity*2);
+//		}
+//		_str[_size++] = c;
+//		_str[_size] = '\0';
+//	}
+//	string& operator+=(char c)
+//	{
+//		push_back(c);
+//		return *this;
+//	}
+//	void clear()
+//	{
+//		_size = 0;
+//		_str[_size] = '\0';
+//	}
+//	void Swap(string& s)
+//	{
+//		swap(_str, s._str);
+//		swap(_size, s._size);
+//		swap(_capacity, s._capacity);
+//	}
+//	const char* c_str()const
+//	{
+//		return _str;
+//	}
+//
+//private:
+//	size_t _size;
+//	size_t _capacity;
+//	char* _str;
+//};
