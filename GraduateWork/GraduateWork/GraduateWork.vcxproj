@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="C++内存管理.cpp" />
     <ClCompile Include="C++初步复习.cpp" />
+    <ClCompile Include="stack-queue.cpp" />
     <ClCompile Include="String类.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="动态内存开辟.c" />

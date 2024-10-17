@@ -1,2 +1,4 @@
 ﻿  vector.cpp
+  test.c
+D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\GraduateWork\test.c(12,8): warning C4013: “printf”未定义；假设外部返回 int
   GraduateWork.vcxproj -> D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\Debug\GraduateWork.exe

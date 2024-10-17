@@ -326,15 +326,15 @@ using namespace std;
 //	return 0;
 //}
 
-void print_list(const list<int>& l1)
-{
-	for (list<int>::const_iterator it = l1.begin();it != l1.end(); ++it)
-	{
-		cout << *it << " ";
-	}
+//void print_list(const list<int>& l1)
+//{
+//	for (list<int>::const_iterator it = l1.begin();it != l1.end(); ++it)
+//	{
+//		cout << *it << " ";
+//	}
 	/*for (auto& e : l1)
 		cout << e << " ";*/
-}
+//}
 //int main()
 //{
 	/*int array[] = { 1,2,3,5,6 };
@@ -350,69 +350,69 @@ void print_list(const list<int>& l1)
 
 
 //}
-void test1()
-{
-	int array[] = { 1,2,5,6,6 };
-	list<int>L(array, array + sizeof(array) / sizeof(array[0]));
-	L.push_back(4);
-	L.push_front(0);
-	print_list(L);
-
-	L.pop_back();
-	L.pop_front();
-	print_list(L);
-}
-void test2()
-{
-	int array[] = { 1,4,5,612,3,5 };
-	list<int> L(array, array + sizeof(array) / sizeof(array[0]));
-	auto pos = ++L.begin();
-	cout << *pos << endl;
-
-	L.insert(pos, 4);
-	print_list(L);
-
-	L.insert(pos, 5, 5);
-	print_list(L);
-
-	vector<int> v{ 7,8,9 };
-	L.insert(pos, v.begin(), v.end());
-
-	L.erase(L.begin(), L.end());
-	print_list(L);
-
-	L.erase(L.begin(), L.end());
-}
-template<typename T>
-struct ListNode
-{
-	ListNode(const T& val = T())
-		:_pPre(nullptr)
-		, _pNext(nullptr)
-		,_val(val)
-	{}
-	ListNode<T>* _pPre;
-	ListNode<T>* _pNext;
-	T _val;
-};
-template<typename T,typename Ref,typename Ptr>
-class ListIterator
-{
-	typedef ListNode<T>* PNode;
-	typedef ListIterator<T, Ref, Ptr> Self;
-public:
-	ListIterator(PNode pNode = nullptr)
-		: _pNode(pNode)
-	{}
-	ListIterator(const Self& l)
-		: _pNode(l._pNode)
-	{}
-	T& operator*() { return _pNode->_val; }
-	T* operator->() { return &(operator*()); }
-	Self& operator++()
-	{
-		_pNode = _pNode->_pNext;
-		return *this;
-	}
-
-};
+//void test1()
+//{
+//	int array[] = { 1,2,5,6,6 };
+//	list<int>L(array, array + sizeof(array) / sizeof(array[0]));
+//	L.push_back(4);
+//	L.push_front(0);
+//	print_list(L);
+//
+//	L.pop_back();
+//	L.pop_front();
+//	print_list(L);
+//}
+//void test2()
+//{
+//	int array[] = { 1,4,5,612,3,5 };
+//	list<int> L(array, array + sizeof(array) / sizeof(array[0]));
+//	auto pos = ++L.begin();
+//	cout << *pos << endl;
+//
+//	L.insert(pos, 4);
+//	print_list(L);
+//
+//	L.insert(pos, 5, 5);
+//	print_list(L);
+//
+//	vector<int> v{ 7,8,9 };
+//	L.insert(pos, v.begin(), v.end());
+//
+//	L.erase(L.begin(), L.end());
+//	print_list(L);
+//
+//	L.erase(L.begin(), L.end());
+//}
+//template<typename T>
+//struct ListNode
+//{
+//	ListNode(const T& val = T())
+//		:_pPre(nullptr)
+//		, _pNext(nullptr)
+//		,_val(val)
+//	{}
+//	ListNode<T>* _pPre;
+//	ListNode<T>* _pNext;
+//	T _val;
+//};
+//template<typename T,typename Ref,typename Ptr>
+//class ListIterator
+//{
+//	typedef ListNode<T>* PNode;
+//	typedef ListIterator<T, Ref, Ptr> Self;
+//public:
+//	ListIterator(PNode pNode = nullptr)
+//		: _pNode(pNode)
+//	{}
+//	ListIterator(const Self& l)
+//		: _pNode(l._pNode)
+//	{}
+//	T& operator*() { return _pNode->_val; }
+//	T* operator->() { return &(operator*()); }
+//	Self& operator++()
+//	{
+//		_pNode = _pNode->_pNext;
+//		return *this;
+//	}
+//
+//};
