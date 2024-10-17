@@ -93,3 +93,91 @@ using namespace std;
 //	T _array[N];
 //	size_t _size;
 //};
+
+//函数模板的特化
+//template<class T>
+//bool IsEqual(T& left, T& right)
+//{
+//	return left == right;
+//}
+//
+//void Test()
+//{
+//	const char* p1 = "hello";
+//	const char* p2 = "world";
+//
+//	if (IsEqual(p1, p2))
+//		cout << p1 << endl;
+//	else
+//		cout << p2 << endl;
+//}
+//
+//template<>
+//bool IsEqual<char*>(char*& left, char*& right)
+//{
+//	if (strcmp(left, right) > 0)
+//		return true;
+//	return false;
+//}
+
+//template<class T1,class T2>
+//class Data
+//{
+//public:
+//	Data() { cout << "Data<T1,T2>" << endl; }
+//private:
+//	T1 _d1;
+//	T2 _d2;
+//};
+//
+//template<>
+//class Data<int, char>
+//{
+//public:
+//	Data() { cout << "Data<int char>" << endl; }
+//private:
+//	T1 _d1;
+//	T2 _d2;
+//};
+//void TestVector()
+//{
+//	Data<int, int> d1;
+//	Data<int, char> d2;
+//}
+
+//#include<sstream>
+//int main()
+//{
+//	int a = 12345678;
+//	string sa;
+//
+//	stringstream s;
+//	s << a;
+//	s >> sa;
+//
+//	s.clear();
+//	double d = 12.34;
+//	s << d;
+//	s >> sa;
+//
+//	string sValue;
+//	sValue = s.str();
+//	cout << sValue << endl;
+//	return 0;
+//}
+//字符串拼接
+//int main()
+//{
+//	stringstream sstream;
+//
+//	// 将多个字符串放入 sstream 中
+//	sstream << "first" << " " << "string,";
+//	sstream << " second string";
+//	cout << "strResult is: " << sstream.str() << endl;
+//
+//	// 清空 sstream
+//	sstream.str("");
+//	sstream << "third string";
+//	cout << "After clear, strResult is: " << sstream.str() << endl;
+//	return 0;
+//}

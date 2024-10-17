@@ -227,7 +227,7 @@ using namespace std;
 //	for (const auto& points : results) {
 //		cout << points << '\n';
 //	}
-//
+//                                                                                                                                                             
 //	return 0;
 //}
 //
@@ -307,9 +307,9 @@ using namespace std;
 //}
 
 //list
-#include<iostream>
-#include<list>
-using namespace std;
+//#include<iostream>
+//#include<list>
+//using namespace std;
 //int main()
 //{
 //	list<int> l1;
