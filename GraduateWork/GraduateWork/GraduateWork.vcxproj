@@ -145,6 +145,7 @@
     <ClCompile Include="String类.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="动态内存开辟.c" />
+    <ClCompile Include="多态.cpp" />
     <ClCompile Include="字符串操作.c" />
     <ClCompile Include="指针进阶.c" />
     <ClCompile Include="test.c" />
