@@ -309,108 +309,130 @@ using namespace std;
 //	*p = reinterpret_cast<int&>(j);
 //}
 
-#include <iostream>
-#include <string>
-#include <unordered_set>
-
-using namespace std;
-
-// 判断分母是否全为0
-bool isDenominatorZero(const string& denom) {
-    return denom.find_first_not_of('0') == string::npos; // 判断是否全是0
-}
-
-// 判断两个字符串是否可以通过删除相同字符得到
-bool canTransform(const string& num1, const string& denom1, const string& num2, const string& denom2) {
-    unordered_set<char> set1;
-
-    // 将第一个分数的分子和分母中的字符加入集合
-    for (char c : num1) set1.insert(c);
-    for (char c : denom1) set1.insert(c);
-
-    // 检查第二个分数的分子
-    for (char c : num2) {
-        if (set1.find(c) == set1.end()) {
-            return false;
-        }
-    }
-
-    // 检查第二个分数的分母
-    for (char c : denom2) {
-        if (set1.find(c) == set1.end()) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-// 去除字符串中的所有字符
-string removeCharacters(const string& str, const string& charsToRemove) {
-    string result;
-    for (char c : str) {
-        if (charsToRemove.find(c) == string::npos) {
-            result += c;
-        }
-    }
-    return result;
-}
-
-int main() {
-    int T;
-    cin >> T; // 读取数据组数
-    cin.ignore(); // 忽略行结束符
-
-    for (int i = 0; i < T; i++) {
-        string fraction1, fraction2;
-        getline(cin, fraction1); // 读取整行，包括空格
-
-        // 找到分数的分隔符位置
-        size_t spacePos = fraction1.find(' ');
-        string fraction1_part = fraction1.substr(0, spacePos);
-        string fraction2_part = fraction1.substr(spacePos + 1);
-
-        // 分割分数1
-        string num1 = fraction1_part.substr(0, fraction1_part.find('/'));
-        string denom1 = fraction1_part.substr(fraction1_part.find('/') + 1);
-
-        // 分割分数2
-        string num2 = fraction2_part.substr(0, fraction2_part.find('/'));
-        string denom2 = fraction2_part.substr(fraction2_part.find('/') + 1);
-
-        // 如果两个分数相等，直接输出 "Yes"
-        if (fraction1_part == fraction2_part) {
-            cout << "Yes" << endl;
-            continue;
-        }
-
-        // 确保分母不全为零
-        if (isDenominatorZero(denom1) || isDenominatorZero(denom2)) {
-            cout << "No" << endl;
-            continue;
-        }
-
-        // 逐个字符删除分子和分母的相同字符
-        string transformedNum1 = num1;
-        string transformedDenom1 = denom1;
-
-        // 尝试所有的字符删除
-        for (char c : num1) {
-            string tempNum = removeCharacters(transformedNum1, string(1, c));
-            string tempDenom = removeCharacters(transformedDenom1, string(1, c));
-
-            // 判断结果是否匹配
-            if (tempNum == num2 && tempDenom == denom2) {
-                cout << "Yes" << endl;
-                break;
-            }
-        }
-
-        // 如果没有找到合适的变换
-        cout << "No" << endl;
-    }
-
-    return 0;
-}
-
+//#include <iostream>
+//#include <string>
+//#include <unordered_set>
+//
+//using namespace std;
+//
+//// 判断分母是否全为0
+//bool isDenominatorZero(const string& denom) {
+//    return denom.find_first_not_of('0') == string::npos; // 判断是否全是0
+//}
+//
+//// 判断两个字符串是否可以通过删除相同字符得到
+//bool canTransform(const string& num1, const string& denom1, const string& num2, const string& denom2) {
+//    unordered_set<char> set1;
+//
+//    // 将第一个分数的分子和分母中的字符加入集合
+//    for (char c : num1) set1.insert(c);
+//    for (char c : denom1) set1.insert(c);
+//
+//    // 检查第二个分数的分子
+//    for (char c : num2) {
+//        if (set1.find(c) == set1.end()) {
+//            return false;
+//        }
+//    }
+//
+//    // 检查第二个分数的分母
+//    for (char c : denom2) {
+//        if (set1.find(c) == set1.end()) {
+//            return false;
+//        }
+//    }
+//
+//    return true;
+//}
+//
+//// 去除字符串中的所有字符
+//string removeCharacters(const string& str, const string& charsToRemove) {
+//    string result;
+//    for (char c : str) {
+//        if (charsToRemove.find(c) == string::npos) {
+//            result += c;
+//        }
+//    }
+//    return result;
+//}
+//
+//int main() {
+//    int T;
+//    cin >> T; // 读取数据组数
+//    cin.ignore(); // 忽略行结束符
+//
+//    for (int i = 0; i < T; i++) {
+//        string fraction1, fraction2;
+//        getline(cin, fraction1); // 读取整行，包括空格
+//
+//        // 找到分数的分隔符位置
+//        size_t spacePos = fraction1.find(' ');
+//        string fraction1_part = fraction1.substr(0, spacePos);
+//        string fraction2_part = fraction1.substr(spacePos + 1);
+//
+//        // 分割分数1
+//        string num1 = fraction1_part.substr(0, fraction1_part.find('/'));
+//        string denom1 = fraction1_part.substr(fraction1_part.find('/') + 1);
+//
+//        // 分割分数2
+//        string num2 = fraction2_part.substr(0, fraction2_part.find('/'));
+//        string denom2 = fraction2_part.substr(fraction2_part.find('/') + 1);
+//
+//        // 如果两个分数相等，直接输出 "Yes"
+//        if (fraction1_part == fraction2_part) {
+//            cout << "Yes" << endl;
+//            continue;
+//        }
+//
+//        // 确保分母不全为零
+//        if (isDenominatorZero(denom1) || isDenominatorZero(denom2)) {
+//            cout << "No" << endl;
+//            continue;
+//        }
+//
+//        // 逐个字符删除分子和分母的相同字符
+//        string transformedNum1 = num1;
+//        string transformedDenom1 = denom1;
+//
+//        // 尝试所有的字符删除
+//        for (char c : num1) {
+//            string tempNum = removeCharacters(transformedNum1, string(1, c));
+//            string tempDenom = removeCharacters(transformedDenom1, string(1, c));
+//
+//            // 判断结果是否匹配
+//            if (tempNum == num2 && tempDenom == denom2) {
+//                cout << "Yes" << endl;
+//                break;
+//            }
+//        }
+//
+//        // 如果没有找到合适的变换
+//        cout << "No" << endl;
+//    }
+//
+//    return 0;
+//}
+//template<class K,class V>
+//struct BSTNode
+//{
+//	BSTNode(const K& key=K(),const V& value=V())
+//		:_pLeft(nullptr)
+//		,_pRight(nullptr)
+//		,_key(key)
+//		,_Value(value)
+//	{}
+//	BSTNode<T>* _pLeft;
+//	BSTNode<T>* _pRight;
+//	K _key;
+//	V _value;
+//};
+//template<class K,class V>
+//class BSTree
+//{
+//	typedef BSTNode<K, V> Node;
+//	typedef Node* PNode;
+//public:
+//	BSTree():_pRoot(nullptr){}
+//	~BSNode(){}
+//};
 
