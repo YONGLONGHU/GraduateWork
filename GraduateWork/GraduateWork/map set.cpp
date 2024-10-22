@@ -228,35 +228,35 @@ using namespace std;
 //	return 0;
 //}
 
-template<class T>
-struct AVLTreeNode
-{
-public:
-	AVLTreeNode(const T& data)
-		:_pLeft(nullptr), _pRight(nullptr), _pParent(nullptr)
-	    ,_data(data),_bf(0){}
-private:
-	AVLTreeNode<T>* _pLeft;
-	AVLTreeNode<T>* _pRight;
-	AVLTreeNode<T>* _pParent;
-	T _data;
-	int _bf;
-};
-//红黑色的定义
-enum Color{RED,BLACK};
-template<class ValueType>
-struct RBTreeNode
-{
-public:
-	RBTreeNode(const ValueType& data = ValueType()，Color color = RED)
-		: _pLeft(nullptr), _pRight(nullptr), _pParent(nullptr)
-		, _data(data), _color(color)
-	{}
-
-private:
-	RBTreeNode<ValueType>* _pLeft; // 节点的左孩子
-	RBTreeNode<ValueType>* _pRight; // 节点的右孩子
-	RBTreeNode<ValueType>* _pParent; // 节点的双亲
-	ValueType _data; 
-	Color _color;
-};
+//template<class T>
+//struct AVLTreeNode
+//{
+//public:
+//	AVLTreeNode(const T& data)
+//		:_pLeft(nullptr), _pRight(nullptr), _pParent(nullptr)
+//	    ,_data(data),_bf(0){}
+//private:
+//	AVLTreeNode<T>* _pLeft;
+//	AVLTreeNode<T>* _pRight;
+//	AVLTreeNode<T>* _pParent;
+//	T _data;
+//	int _bf;
+//};
+////红黑色的定义
+//enum Color{RED,BLACK};
+//template<class ValueType>
+//struct RBTreeNode
+//{
+//public:
+//	RBTreeNode(const ValueType& data = ValueType()，Color color = RED)
+//		: _pLeft(nullptr), _pRight(nullptr), _pParent(nullptr)
+//		, _data(data), _color(color)
+//	{}
+//
+//private:
+//	RBTreeNode<ValueType>* _pLeft; // 节点的左孩子
+//	RBTreeNode<ValueType>* _pRight; // 节点的右孩子
+//	RBTreeNode<ValueType>* _pParent; // 节点的双亲
+//	ValueType _data; 
+//	Color _color;
+//};
