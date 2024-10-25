@@ -141,3 +141,195 @@ using namespace std;
 //	}
 //	return 0;
 //}
+#include<vector>
+#include<algorithm>
+using namespace std;
+//int smallestRange(vector<int>& nums, int k)
+//{
+//	sort(nums.begin(), nums.end());
+//	int n = nums.size();
+//	int initialScore = nums[n - 1] - nums[0];
+//	//尝试所有可能的组合
+//	for (int i = 0; i < n - 1; ++i)
+//	{
+//		int newMin = min(nums[i] + k, nums[n - 1] - k);
+//		int newMax = max(nums[i + 1] - k, nums[0] + k);
+//		int newScore = newMax -newMin;
+//		if (newScore < initialScore)
+//		{
+//			initialScore = newScore;
+//		}
+//	}
+//	return initialScore;
+//}
+
+//int smallestRangeII(vector<int>& nums, int k)
+//{
+//	sort(nums.begin(), nums.end());
+//	int n = nums.size();
+//	int MinScore = nums[n - 1] - nums[0];
+//	if (n == 1)
+//		return 0;
+//	for (int i = 0; i < n-1; ++i)
+//	{
+//		int MaxVal = max(nums[n - 1]-k, nums[i]+k);
+//		int MinVal = min(nums[0] + k, nums[i+1]-k);
+//		MinScore = min(MinScore, MaxVal - MinVal);
+//	}
+//	return MinScore;
+//}
+//class Solution {
+//public:
+//    int longestConsecutive(vector<int>& nums)
+//    {
+//        int result = 1;
+//        int count = 1;
+//        int length = nums.size();
+//        if (length == 0)return 0;
+//        if (length == 1)return 1;
+//        sort(nums);
+//        for (int i = 0; i < length - 1; ++i)
+//        {
+//            if (nums[i] == nums[i + 1])
+//                continue;
+//            if (nums[i] + 1 != nums[i + 1])
+//            {
+//                result = max(result, count);
+//                count = 1;
+//                continue;
+//            }
+//            ++count;
+//        }
+//        return max(result, count);
+//    }
+//};
+//class Solution {
+//public:
+//    void moveZeroes(vector<int>& nums)
+//    {
+//        int s = 0;
+//        for (int i = 0; i < nums.size(); i++)
+//        {
+//            if (nums[i] != 0)
+//            {
+//                nums[s++] = nums[i];
+//            }
+//        }
+//        for (int i = s; i < nums.size(); i++)
+//        {
+//            nums[i] = 0;
+//        }
+//    }
+//};
+
+//class Solution {
+//public:
+//    int maxArea(vector<int>& height)
+//    {
+//        int maxA = 0;
+//        int length = height.size();
+//        for (int i = 0; i < length - 1; ++i)
+//        {
+//            for (int j = i; j < length; ++j)
+//            {
+//                int temp = (j - i) * min(height[i], height[j]);
+//                if (temp > maxA)
+//                    maxA = temp;
+//            }
+//        }
+//        return maxA;
+//    }
+//};
+//void Func()
+//{
+//	return;
+//}
+////内存泄漏
+//void MemoryLeaks()
+//{
+//	int* p1 = (int*)malloc(sizeof(int));
+//	int* p2 = new int;
+//
+//	int* p3 = new int[10];
+//
+//	Func();
+//	delete[] p3;
+//}
+////智能指针
+//template<class T>
+//class SmartPtr {
+//public:
+//	SmartPtr(T* ptr = nullptr)
+//		: _ptr(ptr)
+//	{}
+//
+//	~SmartPtr()
+//	{
+//		if (_ptr)
+//			delete _ptr;
+//	}
+//	T& operator*() { return *_ptr; }
+//	T* operator->() { return _ptr; }
+//private:
+//	T* _ptr;
+//};
+//struct Data
+//{
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//int main()
+//{
+//	SmartPtr<int> sp1(new int);
+//
+//}
+//
+//class Solution {
+//public:
+//    vector<vector<int>> threeSum(vector<int>& nums)
+//    {
+//        int n = nums.size();
+//        sort(nums.begin(), nums.end());
+//        vector<vector<int>>result;
+//        for (int i = 0; i < n - 2; ++i)
+//        {
+//            if (nums[i] > 0) break;
+//            if (i > 0 && nums[i] == nums[i - 1]) continue;
+//            int left = i + 1; int right = n - 1;
+//            while (left < right)
+//            {
+//                int sum = nums[i] + nums[left] + nums[right];
+//                if (sum == 0)
+//                {
+//                    result.push_back({ nums[i],nums[left],nums[right] });
+//                    while (left < right && nums[left] == nums[left + 1])
+//                        ++left;
+//                    while (left < right && nums[right] == nums[right - 1])
+//                        --right;
+//                }
+//                else if (sum < 0)
+//                    ++left;
+//                else
+//                    --right;
+//            }
+//        }
+//        return result;
+//    }
+//};
+//class Solution {
+//public:
+//    int subarraySum(vector<int>& nums, int k) {
+//        int count = 0;
+//        for (int start = 0; start < nums.size(); ++start) {
+//            int sum = 0;
+//            for (int end = start; end >= 0; --end) {
+//                sum += nums[end];
+//                if (sum == k) {
+//                    count++;
+//                }
+//            }
+//        }
+//        return count;
+//    }
+//};
