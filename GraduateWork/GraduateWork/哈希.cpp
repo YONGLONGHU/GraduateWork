@@ -391,3 +391,55 @@ using namespace std;
 //        return ans;
 //    }
 //};
+
+//class Solution {
+//public:
+//    vector<vector<int>> merge(vector<vector<int>>& intervals)
+//    {
+//        sort(intervals.begin(), intervals.end());
+//        vector<vector<int>> result;
+//        int length = intervals.size();
+//        if (length == 1 || length == 0) return intervals;
+//        for (int i = 0; i < length - 1; i++)
+//        {
+//            int t = 0;
+//            while (i + 1 + t < length && intervals[i + t][1] >= intervals[i + 1 + t][0])
+//            {
+//                intervals[i + t + 1][0] = min(intervals[i + t + 1][0], intervals[i + t][0]);
+//                intervals[i + t + 1][1] = max(intervals[i + t + 1][1], intervals[i + t][1]);
+//                t++;
+//            }
+//            result.push_back({ intervals[i][0],intervals[i + t][1] });
+//            i = i + t;
+//        }
+//        if (result[result.size() - 1][1] < intervals[length - 1][0])
+//            result.push_back({ intervals[length - 1][0],intervals[length - 1][1] });
+//        else
+//            result[result.size() - 1][1] = max(intervals[length - 1][1], result[result.size() - 1][1]);
+//        return result;
+//    }
+//};
+//class Solution {
+//public:
+//    vector<int> productExceptSelf(vector<int>& nums) {
+//        vector<int> result(nums.size());
+//        int sum = 1;
+//        for (auto& e : nums)
+//            sum *= e;
+//        for (int i = 0; i < nums.size(); i++) {
+//            if (nums[i] != 0)
+//                result[i] = sum / nums[i];
+//            else {
+//                int temp = 1;
+//                for (int j = 0; j < nums.size(); j++) {
+//                    if (j == i)
+//                        continue;
+//                    else
+//                        temp = temp * nums[j];
+//                }
+//                result[i] = temp;
+//            }
+//        }
+//        return result;
+//    }
+//};
