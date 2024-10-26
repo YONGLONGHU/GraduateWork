@@ -333,3 +333,61 @@ using namespace std;
 //        return count;
 //    }
 //};
+
+//动态规划
+//class Solution {
+//public:
+//    int maxSubArray(vector<int>& nums)
+//    {
+//        int fi = nums[0];
+//        int maxfi = nums[0];
+//        for (int i = 1; i < nums.size(); ++i)
+//        {
+//            fi = max(nums[i], nums[i] + fi);
+//            maxfi = max(maxfi, fi);
+//        }
+//        return maxfi;
+//    }
+//};
+
+//class Solution {
+//public:
+//    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+//        vector<vector<int>> res;
+//        sort(intervals.begin(), intervals.end());
+//
+//        for (auto intr : intervals) {
+//            if (res.empty() || res.back()[1] < intr[0])
+//                res.push_back(intr);
+//            else {
+//                res.back()[1] = max(res.back()[1], intr[1]);
+//            }
+//        }
+//        return res;
+//    }
+//};
+
+//class Solution {
+//public:
+//    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+//        int n = intervals.size();
+//        vector<vector<int>> ans;
+//        //排序 保证数组升序
+//        sort(intervals.begin(), intervals.end());
+//        for (int i = 0; i < n; i++) {
+//            //判断是否越界 两个数组是否有重合部分
+//            if (i < n - 1 && intervals[i][1] >= intervals[i + 1][0]) {
+//                //更新原数组
+//                //例：[1,2][2,3][5,6] => [1,2][1,3][5,6]
+//                intervals[i + 1][0] = min(intervals[i][0], intervals[i + 1][0]);
+//                intervals[i + 1][1] = max(intervals[i + 1][1], intervals[i][1]);
+//            }
+//            //如果和下一个数组没有重合部分 则推入答案数组
+//            //注意 如果i == n - 1 代表数组末尾 一定推入答案数组
+//            else if (i == n - 1 || intervals[i][1] < intervals[i + 1][0]) {
+//                ans.push_back({ intervals[i][0],intervals[i][1] });
+//            }
+//        }
+//        return ans;
+//    }
+//};
