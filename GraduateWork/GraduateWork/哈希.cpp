@@ -443,3 +443,90 @@ using namespace std;
 //        return result;
 //    }
 //};
+
+//class Solution {
+//public:
+//    int firstMissingPositive(vector<int>& nums)
+//    {
+//        sort(nums.begin(), nums.end());
+//        auto last = unique(nums.begin(), nums.end());
+//        nums.erase(last, nums.end());
+//        int n = nums.size();
+//        int t = 0;
+//        int r = 0;
+//        if (n == 1)
+//        {
+//            if (nums[0] == 1)
+//                return 2;
+//            else return 1;
+//        }
+//        while (t < n && nums[t] <= 0)
+//        {
+//            t++; r++;
+//        }
+//        if (t == n) return 1;
+//        for (int i = 1; i < n + 1; ++i)
+//        {
+//            if (t < n && nums[t] != i)
+//                return i;
+//            else
+//                ++t;
+//        }
+//        return n - r + 1;
+//    }
+//};
+
+//class Solution {
+//public:
+//    int climbStairs(int n)
+//    {
+//        int p = 0; int q = 0; int r = 1;
+//        for (int i = 1; i <= n; i++)
+//        {
+//            p = q;
+//            q = r;
+//            r = p + q;
+//        }
+//        return r;
+//    }
+//};
+
+//#include <iostream>
+//#include <string>
+//#include <algorithm>
+//
+//using namespace std;
+//
+//// 函数：翻转数字并去掉前导零
+//int reverseNumber(int num) {
+//    string strNum = to_string(num);
+//    reverse(strNum.begin(), strNum.end());
+//    return stoi(strNum); // 转换回整数，自动去掉前导零
+//}
+//
+//// 函数：计算最大值
+//int maxSumAfterReversal(int a, int b) {
+//    int revA = reverseNumber(a);
+//    int revB = reverseNumber(b);
+//
+//    // 计算所有可能的和
+//    int sum1 = a + b;            // 原始和
+//    int sum2 = revA + revB;      // 两个数字都翻转
+//    int sum3 = a + revB;         // a 原始，b 翻转
+//    int sum4 = revA + b;         // a 翻转，b 原始
+//
+//    // 返回最大和
+//    return max({ sum1, sum2, sum3, sum4 });
+//}
+//
+//int main() {
+//    int a, b;
+//    cout << "输入两个数字: ";
+//    cin >> a >> b;
+//
+//    int result = maxSumAfterReversal(a, b);
+//    cout << "最大和: " << result << endl;
+//
+//    return 0;
+//}
+
