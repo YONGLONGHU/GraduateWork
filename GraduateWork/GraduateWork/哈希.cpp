@@ -574,19 +574,80 @@ using namespace std;
 //    }
 //};
 
-class Solution {
-public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int m = matrix.size(), n = matrix[0].size();
-        int left = -1, right = m * n;
-        while (left + 1 < right) {
-            int mid = left + (right - left) / 2;
-            int x = matrix[mid / n][mid % n];
-            if (x == target) {
-                return true;
-            }
-            (x < target ? left : right) = mid;
-        }
-        return false;
-    }
-};
+//class Solution {
+//public:
+//    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//        int m = matrix.size(), n = matrix[0].size();
+//        int left = -1, right = m * n;
+//        while (left + 1 < right) {
+//            int mid = left + (right - left) / 2;
+//            int x = matrix[mid / n][mid % n];
+//            if (x == target) {
+//                return true;
+//            }
+//            (x < target ? left : right) = mid;
+//        }
+//        return false;
+//    }
+//};
+
+//#include <stdio.h>
+//
+//int findSingle(int arr[], int size) {
+//    int result = 0;
+//    for (int i = 0; i < size; i++) {
+//        result ^= arr[i]; // 进行异或运算
+//    }
+//    return result; // 返回只出现一次的元素
+//}
+//
+//int main() {
+//    int arr[] = { 2, 3, 5, 4, 5, 3, 4 }; // 示例数组
+//    int size = sizeof(arr) / sizeof(arr[0]);
+//    int singleElement = findSingle(arr, size);
+//    printf("只出现一次的元素是: %d\n", singleElement);
+//    return 0;
+//}
+//
+//#include <stdio.h>
+//
+//void measureWater() {
+//    int fiveL = 0; // 5升杯子的水量
+//    int threeL = 0; // 3升杯子的水量
+//
+//    // 步骤：
+//    // 1. 将5升杯子装满水
+//    fiveL = 5;
+//    printf("装满5升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 2. 将5升杯子中的水倒入3升杯子
+//    fiveL -= 3; // 倒入3升杯子
+//    threeL = 3; // 3升杯子装满
+//    printf("从5升杯子倒入3升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 3. 将3升杯子里的水倒掉
+//    threeL = 0; // 清空3升杯子
+//    printf("清空3升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 4. 将5升杯子中的水倒入3升杯子
+//    fiveL -= 3; // 倒入3升杯子
+//    threeL = 3; // 3升杯子装满
+//    printf("从5升杯子倒入3升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 5. 清空3升杯子
+//    threeL = 0; // 清空3升杯子
+//    printf("清空3升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 6. 将5升杯子中的水倒入3升杯子
+//    fiveL -= 3; // 倒入3升杯子
+//    threeL = 3; // 3升杯子装满
+//    printf("从5升杯子倒入3升杯子: 5L = %d, 3L = %d\n", fiveL, threeL);
+//
+//    // 7. 此时5升杯子剩下的就是4升水
+//    printf("最终结果: 5L = %d, 3L = %d\n", fiveL, threeL);
+//}
+//
+//int main() {
+//    measureWater();
+//    return 0;
+//}
