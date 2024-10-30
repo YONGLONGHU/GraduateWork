@@ -651,3 +651,122 @@ using namespace std;
 //    measureWater();
 //    return 0;
 //}
+
+//class Solution {
+//public:
+//    bool searchMatrix(vector<vector<int>>& matrix, int target)
+//    {
+//        int row = matrix.size();
+//        if (row == 0) return false;
+//        int col = matrix[0].size();
+//        int top = 0; int bottom = row - 1;
+//        int mid = 0;
+//        while (top <= bottom)
+//        {
+//            mid = (top + bottom) / 2;
+//            if (matrix[mid][0] == target)
+//                return true;
+//            else if (matrix[mid][0] > target)
+//                bottom = mid - 1;
+//            else
+//                top = mid + 1;
+//        }
+//        int left = 0; int right = col - 1;
+//        int targetRow = bottom;
+//        if (targetRow < 0) return false;
+//        while (left <= right)
+//        {
+//            mid = (right + left) / 2;
+//            if (matrix[targetRow][mid] == target)
+//                return true;
+//            else if (matrix[targetRow][mid] < target)
+//                left = mid + 1;
+//            else
+//                right = mid - 1;
+//        }
+//        return false;
+//    }
+//};
+
+//class Solution {
+//public:
+//    bool searchMatrix(vector<vector<int>> matrix, int target) {
+//        auto row = upper_bound(matrix.begin(), matrix.end(), target, [](const int b, const vector<int>& a) {
+//            return b < a[0];
+//            });
+//        if (row == matrix.begin()) {
+//            return false;
+//        }
+//        --row;
+//        return binary_search(row->begin(), row->end(), target);
+//    }
+//};
+
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> result = { -1, -1 }; // 初始化结果为 [-1, -1]
+
+        // 查找开始位置
+        result[0] = findFirstPosition(nums, target);
+        // 查找结束位置
+        result[1] = findLastPosition(nums, target);
+
+        return result;
+    }
+
+private:
+    int findFirstPosition(vector<int>& nums, int target) {
+        int left = 0, right = nums.size() - 1;
+        int firstPos = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                firstPos = mid; // 找到目标值，记录位置
+                right = mid - 1; // 继续查找左侧
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+
+        return firstPos;
+    }
+
+    int findLastPosition(vector<int>& nums, int target) {
+        int left = 0, right = nums.size() - 1;
+        int lastPos = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                lastPos = mid; // 找到目标值，记录位置
+                left = mid + 1; // 继续查找右侧
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+
+        return lastPos;
+    }
+};
+
+// 示例用法
+// int main() {
+//     Solution solution;
+//     vector<int> nums = {5, 7, 7, 8, 8, 10};
+//     int target = 8;
+//     vector<int> result = solution.searchRange(nums, target);
+//     // result 应为 [3, 4]
+// }
