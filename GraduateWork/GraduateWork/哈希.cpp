@@ -770,3 +770,58 @@ private:
 //     vector<int> result = solution.searchRange(nums, target);
 //     // result ӦΪ [3, 4]
 // }
+//class Solution {
+//public:
+//    int subarraySum(vector<int>& nums, int k)
+//    {
+//        int pre = 0; int next = 1;
+//        int count = 0;
+//        int length = nums.size();
+//        if (nums[length - 1] == k)
+//            count++;
+//        for (int i = 0; i < length - 1; i++)
+//        {
+//            pre = i;
+//            next = i + 1;
+//            if (nums[pre] > k)
+//                return count;
+//            else if (nums[pre] == k)
+//                return ++count;
+//            else
+//            {
+//                int sum = nums[pre];
+//                while (sum < k && next <= length - 1)
+//                {
+//                    sum += nums[next];
+//                    if (sum == k)
+//                    {
+//                        count++;
+//                        break;
+//                    }
+//                    if (sum > k)
+//                        break;
+//                    next++;
+//                }
+//            }
+//        }
+//        return count;
+//    }
+//};
+//class Solution {
+//public:
+//    int subarraySum(vector<int>& nums, int k)
+//    {
+//        int count = 0;
+//        for (int left = 0; left < nums.size(); ++left)
+//        {
+//            int sum = 0;
+//            for (int end = left; end >= 0; --end)
+//            {
+//                sum += nums[end];
+//                if (sum == k)
+//                    count++;
+//            }
+//        }
+//        return count;
+//    }
+//};
