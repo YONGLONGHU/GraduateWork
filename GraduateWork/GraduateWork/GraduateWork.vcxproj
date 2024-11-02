@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -151,6 +151,7 @@
     <ClCompile Include="字符串操作.c" />
     <ClCompile Include="指针进阶.c" />
     <ClCompile Include="test.c" />
+    <ClCompile Include="数据结构.c" />
     <ClCompile Include="算法测试.cpp" />
     <ClCompile Include="类的默认成员函数.cpp" />
     <ClCompile Include="结构体练习.cpp" />
