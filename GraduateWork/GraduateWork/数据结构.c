@@ -177,3 +177,44 @@
 //    }
 //};
 
+//class Solution {
+//public:
+//    int maxProfit(vector<int>& prices)
+//    {
+//        int profit = 0;
+//        int passtemp = prices[0];
+//        for (int buy = 0; buy < prices.size() - 1; buy++)
+//        {
+//            if (passtemp < prices[buy]) continue;
+//            int perprofit = 0;
+//            for (int sole = buy + 1; sole < prices.size(); sole++)
+//            {
+//                if (prices[buy] >= prices[sole]) continue;
+//                else {
+//                    perprofit = prices[sole] - prices[buy];
+//                    profit = max(perprofit, profit);
+//                }
+//            }
+//            passtemp = min(passtemp, prices[buy]);
+//        }
+//        return profit;
+//    }
+//};
+//class Solution {
+//public:
+//    bool canJump(vector<int>& nums)
+//    {
+//        int length = nums.size();
+//        int maxlength = 0;
+//        for (int i = 0; i < length; ++i)
+//        {
+//            if (i <= maxlength)
+//            {
+//                maxlength = max(maxlength, i + nums[i]);
+//                if (maxlength >= length - 1)
+//                    return true;
+//            }
+//        }
+//        return false;
+//    }
+//};
