@@ -330,3 +330,194 @@
 //		}
 //		return true;
 //	}
+//typedef int Datatype;
+//typedef struct BinaryTreeNode
+//{
+//	struct BinaryTreeNode* _pLeft;
+//	struct BinaryTreeNode* _pRight;
+//	Datatype _data;
+//}BinaryTreeNode;
+
+//typedef int Datatype;
+//typedef struct Heap
+//{
+//	Datatype* _a;
+//	int _size;
+//	int _capacity;
+//}Heap;
+//// 堆的构建
+//void HeapCreate(Heap* hp, Datatype* a, int n);
+//// 堆的销毁
+//void HeapDestory(Heap* hp);
+//// 堆的插入
+//void HeapPush(Heap* hp, Datatype x);
+//// 堆的删除
+//void HeapPop(Heap* hp);
+//// 取堆顶的数据
+//Datatype HeapTop(Heap* hp);
+//// 堆的数据个数
+//int HeapSize(Heap* hp);
+//// 堆的判空
+//int HeapEmpty(Heap* hp);
+//#include <iostream>
+//#include <vector>
+//#include <stack>
+//
+//// 定义二叉树节点结构
+//struct TreeNode {
+//    int val;
+//    TreeNode* left;
+//    TreeNode* right;
+//    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+//};
+//
+//// 中序遍历的非递归实现
+//std::vector<int> inorderTraversal(TreeNode* root) {
+//    std::vector<int> result;
+//    std::stack<TreeNode*> stack;
+//    TreeNode* current = root;
+//
+//    while (current != nullptr || !stack.empty()) {
+//        while (current != nullptr) {
+//            stack.push(current);
+//            current = current->left;
+//        }
+//        current = stack.top();
+//        stack.pop();
+//        result.push_back(current->val);
+//        current = current->right;
+//    }
+//    return result;
+//}
+//
+//int main() {
+//    TreeNode* root = new TreeNode(1);
+//    root->left = new TreeNode(2);
+//    root->right = new TreeNode(3);
+//    root->left->left = new TreeNode(4);
+//    root->left->right = new TreeNode(5);
+//
+//    std::vector<int> result = inorderTraversal(root);
+//    for (int val : result) {
+//        std::cout << val << " ";
+//    }
+//    // 输出: 4 2 5 1 3
+//    return 0;
+//}
+//#include <iostream>
+//#include <vector>
+//
+//// 冒泡排序函数
+//void bubbleSort(std::vector<int>& arr) {
+//    bool swapped = true;
+//    int n = arr.size();
+//    while (swapped) {
+//        swapped = false;
+//        for (int i = 1; i < n; i++) {
+//            if (arr[i - 1] > arr[i]) {
+//                // 交换 arr[i - 1] 和 arr[i]
+//                std::swap(arr[i - 1], arr[i]);
+//                swapped = true;
+//            }
+//        }
+//        // 每次遍历后，最大的元素会被放到最后，因此每次减少比较的范围
+//        n--;
+//    }
+//}
+//
+//// 用于打印数组的函数
+//void printArray(const std::vector<int>& arr) {
+//    for (int num : arr) {
+//        std::cout << num << " ";
+//    }
+//    std::cout << std::endl;
+//}
+//
+//// 主函数
+//int main() {
+//    std::vector<int> arr = { 64, 34, 25, 12, 22, 11, 90 };
+//    std::cout << "Original array: ";
+//    printArray(arr);
+//
+//    bubbleSort(arr);
+//
+//    std::cout << "Sorted array: ";
+//    printArray(arr);
+//
+//    return 0;
+//}
+//#include <stdio.h>
+//
+//// 冒泡排序函数
+//void bubbleSort(int arr[], int n) {
+//    int i, j;
+//    for (i = 0; i < n - 1; i++) {
+//        // 前提设定没有发生交换
+//        int swapped = 0;
+//        // 最后i个元素已经是排好序的了，不需要再比较
+//        for (j = 0; j < n - i - 1; j++) {
+//            if (arr[j] > arr[j + 1]) {
+//                // 交换 arr[j] 和 arr[j + 1]
+//                int temp = arr[j];
+//                arr[j] = arr[j + 1];
+//                arr[j + 1] = temp;
+//                swapped = 1;
+//            }
+//        }
+//        // 如果在一次遍历中没有交换发生，则数组已经排序好，可以提前退出
+//        if (swapped == 0)
+//            break;
+//    }
+//}
+//
+//// 用于打印数组的函数
+//void printArray(int arr[], int size) {
+//    for (int i = 0; i < size; i++) {
+//        printf("%d ", arr[i]);
+//    }
+//    printf("\n");
+//}
+//
+//// 主函数
+//int main() {
+//    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+//    int n = sizeof(arr) / sizeof(arr[0]);
+//    printf("Original array: ");
+//    printArray(arr, n);
+//
+//    bubbleSort(arr, n);
+//
+//    printf("Sorted array: ");
+//    printArray(arr, n);
+//
+//    return 0;
+//}
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+//class Solution {
+//public:
+//    int cal_meter(TreeNode* root, int& diameter)
+//    {
+//        if (root == nullptr)
+//            return 0;
+//        int leftheight = cal_meter(root->left, diameter);
+//        int rightheight = cal_meter(root->right, diameter);
+//        diameter = max(diameter, leftheight + rightheight);
+//        return max(leftheight, rightheight) + 1;
+//    }
+//    int diameterOfBinaryTree(TreeNode* root) {
+//        int diameter = 0;
+//        cal_meter(root, diameter);
+//        return diameter;
+//    }
+//};
