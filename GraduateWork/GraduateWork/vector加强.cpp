@@ -77,3 +77,90 @@ using namespace std;
 //	v5.assign(v1.begin(), v1.end());
 //	v5.assign(10, 100);
 //}
+//class Solution {
+//public:
+//    vector<vector<int>> permute(vector<int>& nums) {
+//        vector<vector<int>> results;
+//        backtrack(nums, 0, results);
+//        return results;
+//    }
+//
+//private:
+//    void backtrack(vector<int>& nums, int start, vector<vector<int>>& results) {
+//        if (start == nums.size()) {
+//            results.push_back(nums); // 保存当前排列
+//            return;
+//        }
+//
+//        for (int i = start; i < nums.size(); ++i) {
+//            swap(nums[start], nums[i]);            // 交换元素
+//            backtrack(nums, start + 1, results);   // 递归调用，生成下一个元素的排列
+//            swap(nums[start], nums[i]);            // 还原交换，回溯
+//        }
+//    }
+//};
+//class Solution {
+//public:
+//    bool isValid(string s) {
+//        stack<char> stk;
+//        for (int i = 0; i < s.size(); i++) {
+//            if (s[i] == '(')
+//                stk.push(')');
+//            else if (s[i] == '[')
+//                stk.push(']');
+//            else if (s[i] == '{')
+//                stk.push('}');
+//            else if (!stk.empty() && s[i] == stk.top()) {
+//                stk.pop();
+//            }
+//            else {
+//                return false;
+//            }
+//        }
+//        return stk.empty();
+//    }
+//};
+//class MinStack {
+//    stack<int> x_stack;
+//    stack<int> min_stack;
+//public:
+//    MinStack() {
+//        min_stack.push(INT_MAX);
+//    }
+//
+//    void push(int val) {
+//        x_stack.push(val);
+//        min_stack.push(min(min_stack.top(), val));
+//    }
+//
+//    void pop() {
+//        x_stack.pop();
+//        min_stack.pop();
+//    }
+//    int top()
+//    {
+//        return x_stack.top();
+//    }
+//
+//    int getMin() {
+//        return min_stack.top();
+//    }
+//};
+//class Solution {
+//public:
+//    vector<int> dailyTemperatures(vector<int>& temperatures) {
+//        vector<int> result(temperatures.size(), 0);
+//        stack<int> s; // 单调栈，存储索引
+//
+//        for (int i = 0; i < temperatures.size(); ++i) {
+//            while (!s.empty() && temperatures[i] > temperatures[s.top()]) {
+//                int idx = s.top();
+//                s.pop();
+//                result[idx] = i - idx; // 更新天数差
+//            }
+//            s.push(i); // 将当前索引压入栈
+//        }
+//
+//        return result;
+//    }
+//};
