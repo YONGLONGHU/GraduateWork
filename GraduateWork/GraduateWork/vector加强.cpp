@@ -243,3 +243,42 @@ using namespace std;
 //    test01();
 //    return 0;
 //}
+//#include<set>
+//void printSet(set<int>& s)
+//{
+//	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
+//		cout << *it << " ";
+//	cout << endl;
+//}
+//void test01()
+//{
+//	set<int>s1;
+//	s1.insert(10);
+//	s1.insert(50);
+//	s1.insert(20);
+//	s1.insert(30);
+//	s1.insert(700);
+//	set<int>s2(s1);
+//	printSet(s2);
+//	set<int>s3;
+//	s3 = s2;
+//	printSet(s3);
+//}
+//int main()
+//{
+//	test01();
+//	return 0;
+//}
+#include<string>
+void test01()
+{
+	pair<string, int>p(string("Tom"), 20);
+	cout << "姓名： " << p.first << "年龄: " << p.second << endl;
+	pair<string, int> p2 = make_pair("Jerry", 10);
+	cout << "姓名： " << p2.first << " 年龄： " << p2.second << endl;
+}
+	int main()
+	{
+		test01();
+		return 0;
+	}
