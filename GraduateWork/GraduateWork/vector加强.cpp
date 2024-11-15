@@ -269,16 +269,34 @@ using namespace std;
 //	test01();
 //	return 0;
 //}
-#include<string>
-void test01()
-{
-	pair<string, int>p(string("Tom"), 20);
-	cout << "姓名： " << p.first << "年龄: " << p.second << endl;
-	pair<string, int> p2 = make_pair("Jerry", 10);
-	cout << "姓名： " << p2.first << " 年龄： " << p2.second << endl;
-}
-	int main()
-	{
-		test01();
-		return 0;
-	}
+//#include<string>
+//void test01()
+//{
+//	pair<string, int>p(string("Tom"), 20);
+//	cout << "姓名： " << p.first << "年龄: " << p.second << endl;
+//	pair<string, int> p2 = make_pair("Jerry", 10);
+//	cout << "姓名： " << p2.first << " 年龄： " << p2.second << endl;
+//}
+//	int main()
+//	{
+//		test01();
+//		return 0;
+//	}
+class Solution {
+public:
+    int reverse(int x)
+    {
+        int rev = 0;
+        while (x != 0)
+        {
+            if (rev<INT_MIN / 10 || rev>INT_MAX / 10)
+            {
+                return 0;
+            }
+            int dig = x % 10;
+            x /= 10;
+            rev = rev * 10 + dig;
+        }
+        return rev;
+    }
+};
