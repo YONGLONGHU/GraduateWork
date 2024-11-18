@@ -282,21 +282,63 @@ using namespace std;
 //		test01();
 //		return 0;
 //	}
-class Solution {
-public:
-    int reverse(int x)
-    {
-        int rev = 0;
-        while (x != 0)
-        {
-            if (rev<INT_MIN / 10 || rev>INT_MAX / 10)
-            {
-                return 0;
-            }
-            int dig = x % 10;
-            x /= 10;
-            rev = rev * 10 + dig;
-        }
-        return rev;
-    }
-};
+//class Solution {
+//public:
+//    int reverse(int x)
+//    {
+//        int rev = 0;
+//        while (x != 0)
+//        {
+//            if (rev<INT_MIN / 10 || rev>INT_MAX / 10)
+//            {
+//                return 0;
+//            }
+//            int dig = x % 10;
+//            x /= 10;
+//            rev = rev * 10 + dig;
+//        }
+//        return rev;
+//    }
+//};
+//class Solution {
+//public:
+//    bool isPalindrome(int x) {
+//        // 负数和以0结尾的正数不是回文数
+//        if (x < 0 || (x % 10 == 0 && x != 0)) {
+//            return false;
+//        }
+//
+//        int reverse_data = 0;
+//        int temp = x;
+//
+//        // 反转数字，同时检查溢出
+//        while (x > 0) {
+//            int digit = x % 10;
+//            if (reverse_data > INT_MAX / 10 || (reverse_data == INT_MAX / 10 && digit > 7)) {
+//                return false; // 检查溢出
+//            }
+//            reverse_data = reverse_data * 10 + digit;
+//            x /= 10;
+//        }
+//
+//        // 比较原始数字和反转后的数字
+//        return temp == reverse_data;
+//    }
+//};
+//class Solution {
+//public:
+//    int removeElement(vector<int>& nums, int val)
+//    {
+//        int length = nums.size();
+//        int left = 0;
+//        for (int right = 0; right < length; right++)
+//        {
+//            if (nums[right] != val)
+//            {
+//                nums[left] = nums[right];
+//                left++;
+//            }
+//        }
+//        return left;
+//    }
+//};
