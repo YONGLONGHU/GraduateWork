@@ -1,4 +1,4 @@
-#include<vector>
+//#include<vector>
 #include<string>
 #include<iostream>
 using namespace std;
@@ -371,15 +371,15 @@ using namespace std;
 //	cout << "栈的大小为： " << s.size() << endl;
 //	return 0;
 //}
-#include<set>
-void printSet(set<int>& s)
-{
-	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
-	{
-		cout << *it << " ";
-	}
-	cout << endl;
-}
+//#include<set>
+//void printSet(set<int>& s)
+//{
+//	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
+//	{
+//		cout << *it << " ";
+//	}
+//	cout << endl;
+//}
 //构造函数及常见赋值
 //int main()
 //{
@@ -459,15 +459,15 @@ void printSet(set<int>& s)
 //	pair<string, int>p2 = make_pair("long", 22);
 //	return 0;
 //}
-#include<map>
-void printMap(map<int,int>&m)
-{
-	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
-		cout << "key= " << it->first << "value= " << it->second << endl;
-	cout << endl;
-}
-int main1()
-{
+//#include<map>
+//void printMap(map<int,int>&m)
+//{
+//	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+//		cout << "key= " << it->first << "value= " << it->second << endl;
+//	cout << endl;
+//}
+//int main1()
+//{
 	/*map<int, int>m;
 	m.insert(pair<int, int>(1, 10));
 	m.insert(pair<int, int>(2, 110));
@@ -476,44 +476,75 @@ int main1()
 	printMap(m);
 	map<int,int>m2;
 	m2 = m;*/
-	map<int, int> m;
-	m.insert(pair<int, int>(1, 10));
-	m.insert(make_pair(2, 19));
-	m.insert(map<int, int>::value_type(3, 30));
-	m[4] = 1000;
-	m[4] = 40;
-	printMap(m);
+	//map<int, int> m;
+	//m.insert(pair<int, int>(1, 10));
+	//m.insert(make_pair(2, 19));
+	//m.insert(map<int, int>::value_type(3, 30));
+	//m[4] = 1000;
+	//m[4] = 40;
+	//printMap(m);
 
-	//删除
-	m.erase(m.begin());
-	printMap(m);
+	////删除
+	//m.erase(m.begin());
+	//printMap(m);
 
-	m.erase(3);
-	printMap(m);
+	//m.erase(3);
+	//printMap(m);
 
 	//清空
-	m.erase(m.begin(), m.end());
+	/*m.erase(m.begin(), m.end());
 	m.clear();
 	printMap(m);
 	return 0;
+}*/
+//class myCompare {
+//public:
+//	bool operator()(int v1, int v2)
+//	{
+//		return v1 > v2;
+//	}
+//};
+//void test()
+//{
+//	map<int, int, myCompare>m;
+//	m.insert(make_pair(1, 10));
+//	m.insert(make_pair(2, 20));
+//	m.insert(make_pair(3, 30));
+//	m.insert(make_pair(4, 40));
+//	m.insert(make_pair(5, 50));
+//	for (map<int, int, myCompare>::iterator it = m.begin(); it != m.end(); it++)
+//	{
+//		cout << "key: " << it->first << "value: " << it->second << endl;
+//	}
+//}
+#include<algorithm>
+#include<vector>
+
+void print01(int val)
+{
+	cout << val << " ";
 }
-class myCompare {
+class print02
+{
 public:
-	bool operator()(int v1, int v2)
+	void operator()(int val)
 	{
-		return v1 > v2;
+		cout << val << " ";
 	}
 };
-void test()
+void test01()
 {
-	map<int, int, myCompare>m;
-	m.insert(make_pair(1, 10));
-	m.insert(make_pair(2, 20));
-	m.insert(make_pair(3, 30));
-	m.insert(make_pair(4, 40));
-	m.insert(make_pair(5, 50));
-	for (map<int, int, myCompare>::iterator it = m.begin(); it != m.end(); it++)
+	vector<int> v;
+	for (int i = 0; i < 10; i++)
 	{
-		cout << "key: " << it->first << "value: " << it->second << endl;
+		v.push_back(i);
 	}
+	for_each(v.begin(), v.end(),print01);
+	cout << endl;
+	for_each(v.begin(), v.end(),print02());
+}
+int main()
+{
+	test01();
+	return 0;
 }
