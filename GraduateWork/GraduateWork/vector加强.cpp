@@ -342,3 +342,178 @@ using namespace std;
 //        return left;
 //    }
 //};
+//#include<deque>
+//int main()
+//{
+//	deque<int> d1;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		d1.push_back(i + 1);
+//	}
+//	deque<int> d2(d1.begin(), d1.end());
+//	deque<int> d3(10, 100);
+//	deque<int> d4 = d3;
+//	return 0;
+//}
+//#include<stack>
+//int main()
+//{
+//	stack<int> s;
+//	s.push(10);
+//	s.push(20);
+//	s.push(101);
+//	s.push(201);
+//	while (!s.empty())
+//	{
+//		cout << "栈顶元素为： " << s.top() << endl;
+//		s.pop();
+//	}
+//	cout << "栈的大小为： " << s.size() << endl;
+//	return 0;
+//}
+#include<set>
+void printSet(set<int>& s)
+{
+	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+//构造函数及常见赋值
+//int main()
+//{
+//	set<int> s1;
+//	s1.insert(10);
+//	s1.insert(12); 
+//	s1.insert(0); 
+//	s1.insert(101); 
+//	s1.insert(110);
+//	printSet(s1);
+//	set<int> s2(s1);
+//	set<int>s3;
+//	s3 = s2;
+//	printSet(s3);
+//	return 0;
+//}
+//void main()
+//{
+//	set<int> s1;
+//	s1.insert(10);
+//	s1.insert(30);
+//	s1.insert(20);
+//	s1.insert(40);
+//	if (s1.empty())
+//		cout << "s1为空" << endl;
+//	else
+//	{
+//		cout << "s2不为空" << endl;
+//		cout << "s1的大小为： " << s1.size() << endl;
+//	}
+//	set<int>s2 = s1;
+//	s2.insert(12);
+//	s2.insert(121);
+//	s2.insert(102);
+//	s1.swap(s2);
+//}
+//int main()
+//{
+//	set<int> s1;
+//	//插入
+//	s1.insert(10);
+//	s1.insert(30);
+//	s1.insert(20);
+//	s1.insert(40);
+	//printSet(s1);
+	//s1.erase(s1.begin());
+	//printSet(s1);
+	//s1.erase(30);
+	////s1.erase(s1.begin(), s1.end());
+	//s1.clear();
+
+    //统计和查找
+	/*set<int>::iterator pos = s1.find(30);
+	int num = s1.count(30);
+	cout << "num = " << num << endl;
+	return 0;*/
+//}
+//int main()
+//{
+//	multiset<int> ms;
+//	ms.insert(110);
+//	ms.insert(110);
+//	for (multiset<int>::iterator it = ms.begin(); it != ms.end(); it++)
+//	{
+//		cout << *it << " ";
+//	}
+//	cout << endl;
+//	return 0;
+//}
+
+//pair对组创建
+//#include<string>
+//int main()
+//{
+//	pair<string, int>p(string("Tom"), 20);
+//	cout << p.first << " " << p.second << " ";
+//	pair<string, int>p2 = make_pair("long", 22);
+//	return 0;
+//}
+#include<map>
+void printMap(map<int,int>&m)
+{
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+		cout << "key= " << it->first << "value= " << it->second << endl;
+	cout << endl;
+}
+int main1()
+{
+	/*map<int, int>m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(2, 110));
+	m.insert(pair<int, int>(3, 1310));
+	m.insert(pair<int, int>(4, 0));
+	printMap(m);
+	map<int,int>m2;
+	m2 = m;*/
+	map<int, int> m;
+	m.insert(pair<int, int>(1, 10));
+	m.insert(make_pair(2, 19));
+	m.insert(map<int, int>::value_type(3, 30));
+	m[4] = 1000;
+	m[4] = 40;
+	printMap(m);
+
+	//删除
+	m.erase(m.begin());
+	printMap(m);
+
+	m.erase(3);
+	printMap(m);
+
+	//清空
+	m.erase(m.begin(), m.end());
+	m.clear();
+	printMap(m);
+	return 0;
+}
+class myCompare {
+public:
+	bool operator()(int v1, int v2)
+	{
+		return v1 > v2;
+	}
+};
+void test()
+{
+	map<int, int, myCompare>m;
+	m.insert(make_pair(1, 10));
+	m.insert(make_pair(2, 20));
+	m.insert(make_pair(3, 30));
+	m.insert(make_pair(4, 40));
+	m.insert(make_pair(5, 50));
+	for (map<int, int, myCompare>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key: " << it->first << "value: " << it->second << endl;
+	}
+}
