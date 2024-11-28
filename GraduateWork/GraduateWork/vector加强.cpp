@@ -517,34 +517,152 @@ using namespace std;
 //		cout << "key: " << it->first << "value: " << it->second << endl;
 //	}
 //}
-#include<algorithm>
-#include<vector>
+//#include<algorithm>
+//#include<vector>
+//
+//void print01(int val)
+//{
+//	cout << val << " ";
+//}
+//class print02
+//{
+//public:
+//	void operator()(int val)
+//	{
+//		cout << val << " ";
+//	}
+//};
+//void test01()
+//{
+//	vector<int> v;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		v.push_back(i);
+//	}
+//	for_each(v.begin(), v.end(),print01);
+//	cout << endl;
+//	for_each(v.begin(), v.end(),print02());
+//}
+//int main()
+//{
+//	test01();
+//	return 0;
+//}
+//#include<vector>
+//#include<algorithm>
+//class TransForm
+//{
+//public:
+//	int operator()(int val)
+//	{
+//		return val;
+//	}
+//};
+//class MyPrint
+//{
+//public:
+//	void operator()(int val)
+//	{
+//		cout << val<<" ";
+//	}
+//};
+//void test()
+//{
+//	vector<int> v;
+//	for (int i = 0; i < 10; i++)
+//		v.push_back(i + 1);
+//	vector<int>vTarget;
+//	vTarget.resize(v.size());
+//	transform(v.begin(), v.end(), vTarget.begin(),TransForm());
+//	for_each(vTarget.begin(), vTarget.end(), MyPrint());
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
 
-void print01(int val)
-{
-	cout << val << " ";
-}
-class print02
+//class Person
+//{
+//public:
+//	Person(string name, int age)
+//	{
+//		m_name = name;
+//		m_age = age;
+//	}
+//	bool operator==(const Person& p)
+//	{
+//		if (this->m_name == p.m_name && this->m_age == p.m_age)
+//			return true;
+//		return false;
+//	}
+//public:
+//	string m_name;
+//	int m_age;
+//};
+//void test()
+//{
+//	vector<Person>v;
+//	Person p1("aaa", 10);
+//	Person p2("bbb", 20);
+//	Person p3("ccc", 30);
+//	Person p4("ddd", 40);
+//	v.push_back(p1);
+//	v.push_back(p2);
+//	v.push_back(p3);
+//	v.push_back(p4);
+//	vector<Person>::iterator it = find(v.begin(), v.end(), p2);
+//	if (it == v.end())
+//	{
+//		cout << "没找到" << endl;
+//	}
+//	else
+//	{
+//		cout << "姓名：" << it->m_name << "年龄： " << it->m_age << endl;
+//	}
+//}
+//class Person 
+//{
+//public:
+//	virtual void BuyTicket()
+//	{
+//		cout << "买票-全票" << endl;
+//	}
+//};
+//class Student :public Person
+//{
+//public:
+//	virtual void BuyTicket()
+//	{
+//		cout << "买票-全票" << endl;
+//	}
+//};
+//void Func(Person& p)
+//{
+//	p.BuyTicket();
+//}
+//int main()
+//{
+//	Person p1;
+//	Student st;
+//	Func(p1); Func(st);
+//	return 0;
+//}
+class Person
 {
 public:
-	void operator()(int val)
+	Person()
 	{
-		cout << val << " ";
+		m_a = 0;
+		m_b = 0;
 	}
+	void showPerson() const
+	{
+		this == nullptr;
+		//this->m_a = 0;
+		this->m_b = 0;
+	}
+public:
+	int m_a;
+	mutable int m_b;
 };
-void test01()
-{
-	vector<int> v;
-	for (int i = 0; i < 10; i++)
-	{
-		v.push_back(i);
-	}
-	for_each(v.begin(), v.end(),print01);
-	cout << endl;
-	for_each(v.begin(), v.end(),print02());
-}
-int main()
-{
-	test01();
-	return 0;
-}
