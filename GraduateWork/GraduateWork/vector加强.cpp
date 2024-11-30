@@ -648,21 +648,106 @@ using namespace std;
 //	Func(p1); Func(st);
 //	return 0;
 //}
-class Person
-{
-public:
-	Person()
-	{
-		m_a = 0;
-		m_b = 0;
-	}
-	void showPerson() const
-	{
-		this == nullptr;
-		//this->m_a = 0;
-		this->m_b = 0;
-	}
-public:
-	int m_a;
-	mutable int m_b;
-};
+//class Person
+//{
+//public:
+//	Person()
+//	{
+//		m_a = 0;
+//		m_b = 0;
+//	}
+//	void showPerson() const
+//	{
+//		//this = nullptr;
+//		//this->m_a = 0;
+//		this->m_b = 0;
+//	}
+//public:
+//	int m_a;
+//	mutable int m_b;
+//};
+//void test()
+//{
+//	const Person ps;
+//	cout << ps.m_a << endl;
+//	ps.m_a = 1;
+//	ps.m_a = 2;
+//	ps.showPerson();
+//}
+//class MyAdd
+//{
+//public:
+//	int operator()(int a, int b)
+//	{
+//		return a + b;
+//	}
+//};
+//int main()
+//{
+//	MyAdd add;
+//	int ret = add(1, 2);
+//	cout << MyAdd(10, 20) << endl;
+//}
+//class Solution {
+//public:
+//    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval)
+//    {
+//        int length = intervals.size();
+//        int a = newInterval[0], b = newInterval[1];
+//        vector<vector<int>> result;
+//        if (b < intervals[0][0])
+//        {
+//            intervals.insert(intervals.begin(), newInterval);
+//            return intervals;
+//        }
+//        if (a > intervals[length - 1][1])
+//        {
+//            intervals.push_back(newInterval);
+//            return intervals;
+//        }
+//        int point = 0;
+//        while (a >= intervals[point][0])
+//        {
+//            point++;
+//            result.push_back(intervals[point]);
+//        }
+//        if (intervals[point - 1][1] >= b)
+//            return intervals;
+//        else
+//            result.push_back(newInterval);
+//        for (int i = point; i < length; i++)
+//        {
+//            if (b > intervals[i][0])
+//            {
+//                result[point - 1][1] = intervals[i][1];
+//                break;
+//            }
+//            result.push_back(intervals[i]);
+//        }
+//        return result;
+//    }
+//};
+//class Solution {
+//public:
+//	vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+//		int n = intervals.size();
+//		vector<vector<int>> result;
+//		int i = 0; // Pointer for intervals
+//		// Insert newInterval if it's smaller than any existing interval
+//		while (i < n && intervals[i][1] < newInterval[0]) {
+//			result.push_back(intervals[i++]);
+//		}
+//		// Merge overlapping intervals
+//		while (i < n && intervals[i][0] <= newInterval[1]) {
+//			newInterval[0] = min(newInterval[0], intervals[i][0]);
+//			newInterval[1] = max(newInterval[1], intervals[i][1]);
+//			++i;
+//		}
+//		result.push_back(newInterval); // Insert the newInterval
+//		// Insert the rest of intervals
+//		while (i < n) {
+//			result.push_back(intervals[i++]);
+//		}
+//		return result;
+//	}
+//};
