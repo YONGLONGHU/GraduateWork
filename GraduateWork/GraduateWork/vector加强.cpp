@@ -751,3 +751,23 @@ using namespace std;
 //		return result;
 //	}
 //};
+//class Solution {
+//public:
+//	int lengthOfLastWord(string s) {
+//		int length = 0; // 用于记录单词的长度
+//		bool inWord = false; // 标记是否在单词中
+//
+//		// 从右向左遍历字符串
+//		for (int i = s.length() - 1; i >= 0; --i) {
+//			if (s[i] != ' ') {
+//				++length; // 如果当前字符不是空格，增加长度计数
+//				inWord = true; // 标记当前在单词中
+//			}
+//			else {
+//				if (inWord) break; // 如果遇到空格且之前在单词中，停止遍历
+//			}
+//		}
+//
+//		return length; // 返回最后一个单词的长度
+//	}
+//};
