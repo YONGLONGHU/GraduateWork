@@ -771,3 +771,113 @@ using namespace std;
 //		return length; // 返回最后一个单词的长度
 //	}
 //};
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+//class Solution {
+//public:
+//	ListNode* rotateRight(ListNode* head, int k)
+//	{
+//		if (k == 0 || head == nullptr || head->next == nullptr)
+//			return head;
+//		ListNode* cur = head;
+//		int length = 1;
+//		while (cur->next != nullptr)
+//		{
+//			cur = cur->next;
+//			length++;
+//		}
+//		cur->next = head;
+//		int add = length - k % length;
+//		while (add)
+//		{
+//			cur = cur->next;
+//			add--;
+//		}
+//		ListNode* result = cur->next;
+//		cur->next = nullptr;
+//		return result;
+//	}
+//};
+//class Solution {
+//public:
+//	vector<int> plusOne(vector<int>& digits) {
+//		int n = digits.size();
+//
+//		// 从最后一位开始处理
+//		for (int i = n - 1; i >= 0; i--) {
+//			if (digits[i] != 9) {
+//				// 如果当前位不是 9，直接加 1
+//				digits[i]++;
+//				return digits;
+//			}
+//			else {
+//				// 如果当前位是 9，将当前位设为 0，并继续处理高位
+//				digits[i] = 0;
+//			}
+//		}
+//
+//		// 如果循环结束，说明所有位都是 9，结果应该是 100...0（例如 999 -> 1000）
+//		vector<int> result(n + 1, 0);
+//		result[0] = 1; // 设置最高位为 1
+//		return result;
+//	}
+//};
+//class Solution {
+//public:
+//	string addBinary(string a, string b)
+//	{
+//		int i = a.size() - 1;
+//		int j = b.size() - 1;
+//		int carry = 0;
+//		string result = "";
+//		while (i >= 0 || j >= 0 || carry > 0)
+//		{
+//			int sum = carry;
+//			if (i >= 0)
+//			{
+//				sum += a[i] - '0';
+//				i--;
+//			}
+//			if (j >= 0)
+//			{
+//				sum += b[j] - '0';
+//				j--;
+//			}
+//			result = to_string(sum % 2) + result;
+//			carry = sum / 2;
+//		}
+//		return result;
+//	}
+//};
+//class Solution {
+//public:
+//	vector<int> twoSum(vector<int>& numbers, int target) {
+//		int left = 0;
+//		int right = numbers.size() - 1;
+//		vector<int>result;
+//		while (left < right)
+//		{
+//			int sum = numbers[left] + numbers[right];
+//			if (sum == target)
+//			{
+//				result.push_back(left + 1);
+//				result.push_back(right + 1);
+//				return result;
+//			}
+//			else if (sum < target)
+//				left++;
+//			else
+//				right--;
+//		}
+//		return result;
+//	}
+//};
