@@ -985,3 +985,25 @@ using namespace std;
 //		return ans;
 //	}
 //};
+//class Solution {
+//public:
+//	int strStr(string haystack, string needle)
+//	{
+//		int par_haystack = haystack.size();
+//		int son_needle = needle.size();
+//		for (int i = 0; i < par_haystack - son_needle + 1; i++)
+//		{
+//			int flag = 1;
+//			for (int j = 0; j < son_needle; j++)
+//			{
+//				if (needle[j] != haystack[i + j])
+//					flag = 0;
+//			}
+//			if (flag == 0)
+//				continue;
+//			else
+//				return i;
+//		}
+//		return -1;
+//	}
+//};
