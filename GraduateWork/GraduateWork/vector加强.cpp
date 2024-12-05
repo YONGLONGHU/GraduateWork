@@ -925,40 +925,63 @@ using namespace std;
 //		return count;
 //	}
 //};
-class Solution {
-public:
-	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-		int m = nums1.size();
-		int n = nums2.size();
-		if (m > n) {
-			return findMedianSortedArrays(nums2, nums1); // 保证nums1是较短的数组
-		}
-
-		int imin = 0, imax = m, halfLen = (m + n + 1) / 2;
-		while (imin <= imax) {
-			int i = (imin + imax) / 2;
-			int j = halfLen - i;
-
-			int maxLeft1 = (i == 0 ? INT_MIN : nums1[i - 1]);
-			int minRight1 = (i == m ? INT_MAX : nums1[i]);
-
-			int maxLeft2 = (j == 0 ? INT_MIN : nums2[j - 1]);
-			int minRight2 = (j == n ? INT_MAX : nums2[j]);
-
-			if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
-				// 找到了中位数
-				return (m + n) % 2 == 0
-					? (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) / 2.0
-					: max(maxLeft1, maxLeft2);
-			}
-			else if (maxLeft1 > minRight2) {
-				imax = i - 1;
-			}
-			else {
-				imin = i + 1;
-			}
-		}
-
-		return 0.0; // 不可能执行到这里
-	}
-};
+//class Solution {
+//public:
+//	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+//		int m = nums1.size();
+//		int n = nums2.size();
+//		if (m > n) {
+//			return findMedianSortedArrays(nums2, nums1); // 保证nums1是较短的数组
+//		}
+//
+//		int imin = 0, imax = m, halfLen = (m + n + 1) / 2;
+//		while (imin <= imax) {
+//			int i = (imin + imax) / 2;
+//			int j = halfLen - i;
+//
+//			int maxLeft1 = (i == 0 ? INT_MIN : nums1[i - 1]);
+//			int minRight1 = (i == m ? INT_MAX : nums1[i]);
+//
+//			int maxLeft2 = (j == 0 ? INT_MIN : nums2[j - 1]);
+//			int minRight2 = (j == n ? INT_MAX : nums2[j]);
+//
+//			if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+//				// 找到了中位数
+//				return (m + n) % 2 == 0
+//					? (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) / 2.0
+//					: max(maxLeft1, maxLeft2);
+//			}
+//			else if (maxLeft1 > minRight2) {
+//				imax = i - 1;
+//			}
+//			else {
+//				imin = i + 1;
+//			}
+//		}
+//
+//		return 0.0; // 不可能执行到这里
+//	}
+//};
+//class Solution {
+//public:
+//	int threeSumClosest(vector<int>& nums, int target)
+//	{
+//		sort(nums.begin(), nums.end());
+//		int ans = nums[0] + nums[1] + nums[2];
+//		for (int i = 0; i < nums.size(); ++i)
+//		{
+//			int start = i + 1; int end = nums.size() - 1;
+//			while (start < end)
+//			{
+//				int sum = nums[i] + nums[start] + nums[end];
+//				if (abs(target - sum) < abs(target - ans))
+//					ans = sum;
+//				if (sum > target)
+//					end--;
+//				else
+//					start++;
+//			}
+//		}
+//		return ans;
+//	}
+//};
