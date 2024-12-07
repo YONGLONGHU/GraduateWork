@@ -1007,3 +1007,45 @@ using namespace std;
 //		return -1;
 //	}
 //};
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+//class Solution {
+//public:
+//	ListNode* deleteDuplicates(ListNode* head)
+//	{
+//		if (head == nullptr || head->next == nullptr)
+//			return head;
+//		ListNode* dummy = new ListNode(0);
+//		dummy->next = head;
+//		ListNode* cur = dummy;
+//		ListNode* next = cur->next;
+//		while (next)
+//		{
+//			int ans = 1;
+//			while (next->next != nullptr && next->val == next->next->val)
+//			{
+//				ans++;
+//				next = next->next;
+//			}
+//			if (ans == 1)
+//			{
+//				cur = cur->next;
+//				next = next->next;
+//			}
+//			else
+//			{
+//				cur->next = next->next;
+//				next = next->next;
+//			}
+//		}
+//		return dummy->next;
+//	}
+//};
