@@ -1049,3 +1049,51 @@ using namespace std;
 //		return dummy->next;
 //	}
 //};
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+//class Solution {
+//public:
+//	ListNode* partition(ListNode* head, int x) {
+//		if (head == nullptr)
+//			return head;
+//		ListNode* dummy = new ListNode(0);
+//		dummy->next = head;
+//		ListNode* insert = dummy;
+//		ListNode* cur = dummy->next;
+//		ListNode* pre = dummy;
+//		while (cur != nullptr) {
+//			if (cur->val >= x || cur == head) {
+//				pre = cur;
+//				cur = cur->next;
+//				if (pre->val < x)
+//					insert = pre;
+//			}
+//			else {
+//				// 插入元素
+//				if (insert->next == cur) {
+//					// 更新
+//					pre = cur;
+//					cur = cur->next;
+//					insert = insert->next;
+//				}
+//				else {
+//					pre->next = cur->next;
+//					cur->next = insert->next;
+//					insert->next = cur;
+//					// 更新
+//					insert = insert->next;
+//					cur = pre->next;
+//				}
+//			}
+//		}
+//		return dummy->next;
+//	}
+//};
