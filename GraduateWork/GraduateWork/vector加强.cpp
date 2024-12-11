@@ -1122,3 +1122,117 @@ using namespace std;
 //			return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 //	}
 //};
+//class Solution {
+//public:
+//	int minSubArrayLen(int target, vector<int>& nums)
+//	{
+//		sort(nums.begin(), nums.end());
+//		int right = nums.size() - 1;
+//		int sum = 0;
+//		int count = 0;
+//		while (right >= 0)
+//		{
+//			count++;
+//			sum += nums[right];
+//			if (sum >= target)
+//				return count;
+//			else
+//				right--;
+//		}
+//		return 0;
+//	}
+//};
+//#include <iostream>
+//#include <vector>
+//#include <string>
+//using namespace std;
+//
+//class Solution {
+//public:
+//	bool canConstruct(string ransomNote, string magazine) {
+//		// 创建一个大小为 26 的数组，存储 magazine 中每个字母的出现次数
+//		vector<int> charCount(26, 0);
+//
+//		// 遍历 magazine 字符串，统计每个字符的频率
+//		for (char c : magazine) {
+//			charCount[c - 'a']++;
+//		}
+//
+//		// 遍历 ransomNote 字符串，检查每个字符是否能在 magazine 中找到
+//		for (char c : ransomNote) {
+//			if (charCount[c - 'a'] > 0) {
+//				charCount[c - 'a']--;  // 如果有该字符，使用一次
+//			}
+//			else {
+//				return false;  // 如果没有该字符，返回 false
+//			}
+//		}
+//
+//		return true;  // 所有字符都满足条件，返回 true
+//	}
+//};
+//
+//int main() {
+//	Solution solution;
+//	string ransomNote = "aa";
+//	string magazine = "aab";
+//	cout << (solution.canConstruct(ransomNote, magazine) ? "true" : "false") << endl;
+//
+//	ransomNote = "a";
+//	magazine = "b";
+//	cout << (solution.canConstruct(ransomNote, magazine) ? "true" : "false") << endl;
+//
+//	return 0;
+//}
+
+//class Solution {
+//public:
+//	pair<int, int> expandAroundCenter(const string& s, int left, int right) {
+//		while (left >= 0 && right < s.size() && s[left] == s[right]) {
+//			--left;
+//			++right;
+//		}
+//		return { left + 1, right - 1 };
+//	}
+//
+//	string longestPalindrome(string s) {
+//		int start = 0, end = 0;
+//		for (int i = 0; i < s.size(); ++i) {
+//			auto [left1, right1] = expandAroundCenter(s, i, i);
+//			auto [left2, right2] = expandAroundCenter(s, i, i + 1);
+//			if (right1 - left1 > end - start) {
+//				start = left1;
+//				end = right1;
+//			}
+//			if (right2 - left2 > end - start) {
+//				start = left2;
+//				end = right2;
+//			}
+//		}
+//		return s.substr(start, end - start + 1);
+//	}
+//};
+//class Solution {
+//public:
+//	vector<int> plusOne(vector<int>& digits) {
+//		int n = digits.size();
+//
+//		// 从最后一位开始处理
+//		for (int i = n - 1; i >= 0; i--) {
+//			if (digits[i] != 9) {
+//				// 如果当前位不是 9，直接加 1
+//				digits[i]++;
+//				return digits;
+//			}
+//			else {
+//				// 如果当前位是 9，将当前位设为 0，并继续处理高位
+//				digits[i] = 0;
+//			}
+//		}
+//
+//		// 如果循环结束，说明所有位都是 9，结果应该是 100...0（例如 999 -> 1000）
+//		vector<int> result(n + 1, 0);
+//		result[0] = 1; // 设置最高位为 1
+//		return result;
+//	}
+//};
