@@ -1267,20 +1267,73 @@ public:
 
 	}
 };*/
-class Solution {
-public:
-	void postorder(TreeNode* root, vector<int>& res) {
-		if (root == nullptr) {
-			return;
-		}
-		postorder(root->left, res);
-		postorder(root->right, res);
-		res.push_back(root->val);
-	}
+//class Solution {
+//public:
+//	void postorder(TreeNode* root, vector<int>& res) {
+//		if (root == nullptr) {
+//			return;
+//		}
+//		postorder(root->left, res);
+//		postorder(root->right, res);
+//		res.push_back(root->val);
+//	}
+//
+//	vector<int> postorderTraversal(TreeNode* root) {
+//		vector<int> res;
+//		postorder(root, res);
+//		return res;
+//	}
+//};
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-	vector<int> postorderTraversal(TreeNode* root) {
-		vector<int> res;
-		postorder(root, res);
-		return res;
+void heapify(std::vector<int>& nums, int n, int i) {
+	int largest = i;       // 初始化最大值为根节点
+	int left = 2 * i + 1;  // 左子节点
+	int right = 2 * i + 2; // 右子节点
+
+	// 如果左子节点大于根节点，更新最大值
+	if (left < n && nums[left] > nums[largest])
+		largest = left;
+
+	// 如果右子节点大于当前最大值，更新最大值
+	if (right < n && nums[right] > nums[largest])
+		largest = right;
+
+	// 如果最大值不是根节点，交换它们，并继续heapify
+	if (largest != i) {
+		std::swap(nums[i], nums[largest]);
+		heapify(nums, n, largest);
 	}
-};
+}
+
+void heapSort(std::vector<int>& nums) {
+	int n = nums.size();
+
+	// 构建堆（从最后一个非叶子节点开始，重新heapify）
+	for (int i = n / 2 - 1; i >= 0; i--)
+		heapify(nums, n, i);
+
+	// 一个个从堆中取出元素
+	for (int i = n - 1; i >= 0; i--) {
+		// 将当前的根节点移到数组末尾
+		std::swap(nums[0], nums[i]);
+
+		// heapify 剩下的元素
+		heapify(nums, i, 0);
+	}
+}
+
+int main() {
+	std::vector<int> nums = { 12, 11, 13, 5, 6, 7 };
+	heapSort(nums);
+
+	std::cout << "Sorted array: \n";
+	for (int num : nums) {
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+
+	return 0;
+}
