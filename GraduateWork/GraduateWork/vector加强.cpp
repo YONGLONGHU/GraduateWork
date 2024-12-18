@@ -1388,3 +1388,50 @@ public:
 //
 //	return 0;
 //}
+//#include <iostream>
+//#include <vector>
+//
+//// 插入排序的辅助函数
+//void insertionSort(std::vector<int>& arr, int low, int high) {
+//	for (int i = low + 1; i <= high; i++) {
+//		int key = arr[i];
+//		int j = i - 1;
+//
+//		while (j >= low && arr[j] > key) {
+//			arr[j + 1] = arr[j];
+//			j--;
+//		}
+//		arr[j + 1] = key;
+//	}
+//}
+//
+//// 希尔排序函数
+//void shellSort(std::vector<int>& arr) {
+//	int n = arr.size();
+//	// 初始步长设置为数组长度的一半
+//	int gap = n / 2;
+//
+//	// 逐步减小步长，直到为1
+//	while (gap > 0) {
+//		// 对每个子序列进行插入排序
+//		for (int i = gap; i < n; i++) {
+//			insertionSort(arr, i - gap, i);
+//		}
+//		// 减小步长
+//		gap /= 2;
+//	}
+//}
+//
+//int main() {
+//	std::vector<int> arr = { 12, 34, 5, 3, 76, 89, 45, 23, 1, 0 };
+//	int n = arr.size();
+//
+//	shellSort(arr);
+//
+//	std::cout << "Sorted array: \n";
+//	for (int i = 0; i < n; i++)
+//		std::cout << arr[i] << " ";
+//	std::cout << std::endl;
+//
+//	return 0;
+//}
