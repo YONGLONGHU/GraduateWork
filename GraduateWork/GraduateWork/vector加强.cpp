@@ -1512,54 +1512,86 @@ public:
 //
 //    return 0;
 //}
-#include <iostream>
-#include <vector>
-
-// 交换两个元素
-void swap(int& a, int& b) {
-	int temp = a;
-	a = b;
-	b = temp;
-}
-
-// 快速排序的分区函数
-int partition(std::vector<int>& arr, int low, int high) {
-	// 选择最右侧的元素作为基准值
-	int pivot = arr[high];
-	int i = low - 1; // 小于基准值的元素的索引
-
-	for (int j = low; j < high; j++) {
-		// 如果当前元素小于或等于基准值
-		if (arr[j] < pivot) {
-			i++; // 增加小于基准值的元素的索引
-			swap(arr[i], arr[j]); // 交换元素
-		}
-	}
-	swap(arr[i + 1], arr[high]); // 将基准值放到中间位置
-	return i + 1; // 返回基准值的索引
-}
-
-// 快速排序函数
-void quickSort(std::vector<int>& arr, int low, int high) {
-	if (low < high) {
-		int pivotIndex = partition(arr, low, high); // 获取基准值的索引
-
-		quickSort(arr, low, pivotIndex - 1); // 递归排序左侧子数组
-		quickSort(arr, pivotIndex + 1, high); // 递归排序右侧子数组
-	}
-}
-
-int main() {
-	std::vector<int> arr = { 10, 7, 8, 9, 1, 5 };
-	int n = arr.size();
-
-	quickSort(arr, 0, n - 1);
-
-	std::cout << "Sorted array: \n";
-	for (int num : arr) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
+//#include <iostream>
+//#include <vector>
+//
+//// 交换两个元素
+//void swap(int& a, int& b) {
+//	int temp = a;
+//	a = b;
+//	b = temp;
+//}
+//
+//// 快速排序的分区函数
+//int partition(std::vector<int>& arr, int low, int high) {
+//	// 选择最右侧的元素作为基准值
+//	int pivot = arr[high];
+//	int i = low - 1; // 小于基准值的元素的索引
+//
+//	for (int j = low; j < high; j++) {
+//		// 如果当前元素小于或等于基准值
+//		if (arr[j] < pivot) {
+//			i++; // 增加小于基准值的元素的索引
+//			swap(arr[i], arr[j]); // 交换元素
+//		}
+//	}
+//	swap(arr[i + 1], arr[high]); // 将基准值放到中间位置
+//	return i + 1; // 返回基准值的索引
+//}
+//
+//// 快速排序函数
+//void quickSort(std::vector<int>& arr, int low, int high) {
+//	if (low < high) {
+//		int pivotIndex = partition(arr, low, high); // 获取基准值的索引
+//
+//		quickSort(arr, low, pivotIndex - 1); // 递归排序左侧子数组
+//		quickSort(arr, pivotIndex + 1, high); // 递归排序右侧子数组
+//	}
+//}
+//
+//int main() {
+//	std::vector<int> arr = { 10, 7, 8, 9, 1, 5 };
+//	int n = arr.size();
+//
+//	quickSort(arr, 0, n - 1);
+//
+//	std::cout << "Sorted array: \n";
+//	for (int num : arr) {
+//		std::cout << num << " ";
+//	}
+//	std::cout << std::endl;
+//
+//	return 0;
+//}
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//
+//class Solution {
+//public:
+//	int maxProduct(vector<int>& nums) {
+//		// 特殊情况：如果数组为空，直接返回0
+//		if (nums.empty()) return 0;
+//
+//		// 初始化maxProd和minProd为第一个元素
+//		int maxProd = nums[0];
+//		int minProd = nums[0];
+//		int result = nums[0];  // 结果初始化为第一个元素
+//
+//		for (int i = 1; i < nums.size(); i++) {
+//			// 如果当前数字是负数，交换最大和最小值
+//			if (nums[i] < 0) {
+//				swap(maxProd, minProd);
+//			}
+//
+//			// 更新最大和最小乘积
+//			maxProd = max(nums[i], maxProd * nums[i]);
+//			minProd = min(nums[i], minProd * nums[i]);
+//
+//			// 更新最终结果
+//			result = max(result, maxProd);
+//		}
+//
+//		return result;
+//	}
+//};
