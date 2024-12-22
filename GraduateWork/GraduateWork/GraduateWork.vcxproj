@@ -146,6 +146,7 @@
     <ClCompile Include="String类.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="vector加强.cpp" />
+    <ClCompile Include="力扣练习题.cpp" />
     <ClCompile Include="动态内存开辟.c" />
     <ClCompile Include="哈希.cpp" />
     <ClCompile Include="多态.cpp" />
