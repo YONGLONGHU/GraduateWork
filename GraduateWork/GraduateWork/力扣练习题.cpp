@@ -77,23 +77,23 @@
 //    return result;
 //}
 //
-int main() {
-    int numerator = 1;
-    int denominator = 23;
-    std::cout << fractionToDecimal(numerator, denominator) << std::endl;
-    return 0;
-}
- excel表列名称
-class Solution {
-public:
-    string convertToTitle(int columnNumber) {
-        string ans;
-        while (columnNumber > 0) {
-            int a0 = (columnNumber - 1) % 26 + 1;
-            ans += a0 - 1 + 'A';
-            columnNumber = (columnNumber - a0) / 26;
-        }
-        reverse(ans.begin(), ans.end());
-        return ans;
-    }
-};
+//int main() {
+//    int numerator = 1;
+//    int denominator = 23;
+//    std::cout << fractionToDecimal(numerator, denominator) << std::endl;
+//    return 0;
+//}
+// excel表列名称
+//class Solution {
+//public:
+//    string convertToTitle(int columnNumber) {
+//        string ans;
+//        while (columnNumber > 0) {
+//            int a0 = (columnNumber - 1) % 26 + 1;
+//            ans += a0 - 1 + 'A';
+//            columnNumber = (columnNumber - a0) / 26;
+//        }
+//        reverse(ans.begin(), ans.end());
+//        return ans;
+//    }
+//};
