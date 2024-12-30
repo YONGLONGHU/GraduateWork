@@ -152,3 +152,53 @@
 //
 //    return 0;
 //}
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+// 自定义比较函数
+bool compare(const string& x, const string& y) {
+    return x + y > y + x; // 比较拼接后的字符串
+}
+
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        vector<string> strNums; // 用于存储数字的字符串形式
+
+        // 将整数转换为字符串
+        for (int num : nums) {
+            strNums.push_back(to_string(num));
+        }
+
+        // 使用自定义比较函数进行排序
+        sort(strNums.begin(), strNums.end(), compare);
+
+        // 特殊情况：如果最大的数字是0，返回"0"
+        if (strNums[0] == "0") {
+            return "0";
+        }
+
+        // 拼接排序后的字符串
+        string result;
+        for (const string& str : strNums) {
+            result += str;
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    Solution solution;
+    vector<int> nums1 = { 10, 2 };
+    vector<int> nums2 = { 3, 30, 34, 5, 9 };
+
+    cout << "最大整数为: " << solution.largestNumber(nums1) << endl; // 输出 "210"
+    cout << "最大整数为: " << solution.largestNumber(nums2) << endl; // 输出 "9534330"
+
+    return 0;
+}
