@@ -227,22 +227,37 @@
 //        return dummy->next;
 //    }
 //};
-class Solution {
-public:
-    int ifPrime(int x)
-    {
-        for (int i = 2; i * i <= x; ++i)
-        {
-            if (x % i == 0)
-                return 0;
-        }
-        return 1;
-    }
-    int countPrimes(int n)
-    {
-        int ans = 0;
-        for (int i = 2; i < n; ++i)
-            ans += ifPrime(i);
-        return ans;
-    }
-};
+//class Solution {
+//public:
+//    int ifPrime(int x)
+//    {
+//        for (int i = 2; i * i <= x; ++i)
+//        {
+//            if (x % i == 0)
+//                return 0;
+//        }
+//        return 1;
+//    }
+//    int countPrimes(int n)
+//    {
+//        int ans = 0;
+//        for (int i = 2; i < n; ++i)
+//            ans += ifPrime(i);
+//        return ans;
+//    }
+//};
+//class Solution {
+//public:
+//    bool containsDuplicate(vector<int>& nums)
+//    {
+//        sort(nums.begin(), nums.end());
+//        int length = nums.size();
+//        for (int i = 0; i < length - 1; i++)
+//        {
+//            int j = i + 1;
+//            if (nums[i] == nums[i + 1])
+//                return true;
+//        }
+//        return false;
+//    }
+//};
