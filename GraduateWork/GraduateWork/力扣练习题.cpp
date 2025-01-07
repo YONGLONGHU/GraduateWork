@@ -262,16 +262,54 @@
 //    }
 //};
 //反转二叉树
-class Solution {
-public:
-    TreeNode* invertTree(TreeNode* root) {
-        if (root == nullptr) {
-            return nullptr;
-        }
-        TreeNode* left = invertTree(root->left);
-        TreeNode* right = invertTree(root->right);
-        root->left = right;
-        root->right = left;
-        return root;
-    }
-};
+//class Solution {
+//public:
+//    TreeNode* invertTree(TreeNode* root) {
+//        if (root == nullptr) {
+//            return nullptr;
+//        }
+//        TreeNode* left = invertTree(root->left);
+//        TreeNode* right = invertTree(root->right);
+//        root->left = right;
+//        root->right = left;
+//        return root;
+//    }
+//};
+
+//#include <iostream>
+//
+//// 定义二叉树节点结构体
+//struct TreeNode {
+//    int val;
+//    TreeNode* left;
+//    TreeNode* right;
+//    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+//};
+//
+//class Solution {
+//private:
+//    int count = 0;
+//    int result = 0;
+//    // 中序遍历二叉树
+//    void inorderTraversal(TreeNode* node, int k) {
+//        if (node == nullptr) {
+//            return;
+//        }
+//        // 先递归遍历左子树
+//        inorderTraversal(node->left, k);
+//        count++;
+//        // 当计数等于k时，说明找到了第k小的元素，记录下来并返回
+//        if (count == k) {
+//            result = node->val;
+//            return;
+//        }
+//        // 再递归遍历右子树
+//        inorderTraversal(node->right, k);
+//    }
+//
+//public:
+//    int kthSmallest(TreeNode* root, int k) {
+//        inorderTraversal(root, k);
+//        return result;
+//    }
+//};
