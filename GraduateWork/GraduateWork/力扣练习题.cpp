@@ -314,43 +314,118 @@
 //    }
 //};
 
+//#include<stdio.h>
+//#include<unistd.h>
+//#include<stdlib.h>
+//#include<pthread.h>
+//int tickets = 100;
+//pthread_mutex_t mutex;
+//void* scalpers(void* arg)
+//{
+//	pthread_t tid = pthread_self();
+//	while (1)
+//	{
+//		pthread_mutex_lock(&mutex);
+//		if (tickets > 0)
+//		{
+//			printf("%p-get tickets %d\n", tid, tickets);
+//			tickets--;
+//			pthread_mutex_unlock(&mutex);
+//		}
+//		else
+//		{
+//			pthread_mutex_unlock(&mutex);
+//			pthread_exit(NULL);
+//		}
+//	}
+//	return;
+//}
+//int main()
+//{
+//	pthread_t tid[4];
+//	for (int i = 0; i < 4; i++)
+//	{
+//		int ret = pthread_create(&tid[i],NULL,scalpers,NULL);
+//		if(ret != 0)
+//		{
+//			printf("pthread_create error\n");
+//			return -1;
+//		}
+//	}
+//	for (int i = 0; i < 4; i++)
+//	{
+//		pthread_join(tid[i], NULL);
+//	}
+//	return 0;
+//}
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
 #include<pthread.h>
-int tickets = 100;
-void* scalpers(void* arg)
+int pots = 0;
+pthread_mutex_t mutex;
+pthread_cond_t cond;
+void* student(void* arg)
 {
-	pthread_t tid = pthread_self();
 	while (1)
 	{
-		if (tickets > 0)
+		//加锁
+		pthread_mutex_lock(&mutex);
+		if (pots == 0)
 		{
-			printf("%p-get tickets %d\n", tid, tickets);
-			tickets--;
+			//陷入阻塞
+			pthread_cond_wait(&cond, &mutex);
 		}
-		else
-		{
-			pthread_exit(NULL);
-		}
+		printf("begin eating\n");
+		pots = 0;
+		//解锁
+		pthread_mutex_unlock(&mutex);
+		//唤醒阿姨
+		pthread_cond_signal(&cond);
 	}
-	return;
+	return NULL;
+}
+void* canteen(void* arg)
+{
+	while (1)
+	{
+		//加锁
+		pthread_mutex_lock(&mutex);
+		if (pots == 1)
+		{
+			//阻塞
+			pthread_cond_wait(&cond, &mutex);
+		}
+		printf("OK了\n");
+		pots = 1;
+		//解锁
+		pthread_mutex_unlock)(&mutex);
+		//唤醒学生
+		pthread_cond_signal(&cond);
+	}
+	return NULL;
 }
 int main()
 {
-	pthread_t tid[4];
-	for (int i = 0; i < 4; i++)
+	pthread_t stu_id, aunt_id;
+	int ret;
+	pthread_mutex_init(&mutex, NULL);
+	pthread_cond_init(&cond, NULL);
+	ret = pthread_create(&stu_id, NULL, student, NULL);
+	if (ret != 0)
 	{
-		int ret = pthread_create(&tid[i],NULL,scalpers,NULL);
-		if(ret != 0)
-		{
-			printf("pthread_create error\n");
-			return -1;
-		}
+		printf("create thread error\n");
+		return -1;
 	}
-	for (int i = 0; i < 4; i++)
+	ret = pthread_create(&aunt_id, NULL, canteen, NULL);
+	if (ret != 0)
 	{
-		pthread_join(tid[i], NULL);
+		printf("create thread error\n");
+		return -1;
 	}
+	pthread_join(stu_id, NULL);
+	pthread_join(aunt_id, NULL);
+	pthread_mutex_destroy(&mutex);
+	pthread_cond_destroy(&cond);
 	return 0;
 }
