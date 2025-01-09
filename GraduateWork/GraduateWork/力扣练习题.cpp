@@ -358,74 +358,109 @@
 //	}
 //	return 0;
 //}
-#include<stdio.h>
-#include<unistd.h>
-#include<stdlib.h>
+//#include<stdio.h>
+//#include<unistd.h>
+//#include<stdlib.h>
+//#include<pthread.h>
+//int pots = 0;
+//pthread_mutex_t mutex;
+//pthread_cond_t cond;
+//void* student(void* arg)
+//{
+//	while (1)
+//	{
+//		//¼ÓËø
+//		pthread_mutex_lock(&mutex);
+//		if (pots == 0)
+//		{
+//			//ÏİÈë×èÈû
+//			pthread_cond_wait(&cond, &mutex);
+//		}
+//		printf("begin eating\n");
+//		pots = 0;
+//		//½âËø
+//		pthread_mutex_unlock(&mutex);
+//		//»½ĞÑ°¢ÒÌ
+//		pthread_cond_signal(&cond);
+//	}
+//	return NULL;
+//}
+//void* canteen(void* arg)
+//{
+//	while (1)
+//	{
+//		//¼ÓËø
+//		pthread_mutex_lock(&mutex);
+//		if (pots == 1)
+//		{
+//			//×èÈû
+//			pthread_cond_wait(&cond, &mutex);
+//		}
+//		printf("OKÁË\n");
+//		pots = 1;
+//		//½âËø
+//		pthread_mutex_unlock)(&mutex);
+//		//»½ĞÑÑ§Éú
+//		pthread_cond_signal(&cond);
+//	}
+//	return NULL;
+//}
+//int main()
+//{
+//	pthread_t stu_id, aunt_id;
+//	int ret;
+//	pthread_mutex_init(&mutex, NULL);
+//	pthread_cond_init(&cond, NULL);
+//	ret = pthread_create(&stu_id, NULL, student, NULL);
+//	if (ret != 0)
+//	{
+//		printf("create thread error\n");
+//		return -1;
+//	}
+//	ret = pthread_create(&aunt_id, NULL, canteen, NULL);
+//	if (ret != 0)
+//	{
+//		printf("create thread error\n");
+//		return -1;
+//	}
+//	pthread_join(stu_id, NULL);
+//	pthread_join(aunt_id, NULL);
+//	pthread_mutex_destroy(&mutex);
+//	pthread_cond_destroy(&cond);
+//	return 0;
+//}
+#include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<queue>
 #include<pthread.h>
-int pots = 0;
-pthread_mutex_t mutex;
-pthread_cond_t cond;
-void* student(void* arg)
+#define MAXQ 10
+class BlockQueue
 {
-	while (1)
-	{
-		//¼ÓËø
-		pthread_mutex_lock(&mutex);
-		if (pots == 0)
-		{
-			//ÏİÈë×èÈû
-			pthread_cond_wait(&cond, &mutex);
-		}
-		printf("begin eating\n");
-		pots = 0;
-		//½âËø
-		pthread_mutex_unlock(&mutex);
-		//»½ĞÑ°¢ÒÌ
-		pthread_cond_signal(&cond);
+public:
+	BlockQueue(int maxq=MAXQ):_capacity(maxq){
+		pthread_mutex_init(&_mutex, NULL);
+		pthread_cond_init(&_cond_pro, NULL);
+		pthread_cond_init(&_cond_con, NULL);
 	}
-	return NULL;
-}
-void* canteen(void* arg)
-{
-	while (1)
-	{
-		//¼ÓËø
-		pthread_mutex_lock(&mutex);
-		if (pots == 1)
-		{
-			//×èÈû
-			pthread_cond_wait(&cond, &mutex);
-		}
-		printf("OKÁË\n");
-		pots = 1;
-		//½âËø
-		pthread_mutex_unlock)(&mutex);
-		//»½ĞÑÑ§Éú
-		pthread_cond_signal(&cond);
+	~BlockQueue(){
+		pthread_mutex_destroy(&_mutex);
+		pthread_cond_destroy(&_cond_pro);
+		pthread_cond_destroy(&_cond_con);
 	}
-	return NULL;
-}
-int main()
-{
-	pthread_t stu_id, aunt_id;
-	int ret;
-	pthread_mutex_init(&mutex, NULL);
-	pthread_cond_init(&cond, NULL);
-	ret = pthread_create(&stu_id, NULL, student, NULL);
-	if (ret != 0)
+	bool Push(int data)
 	{
-		printf("create thread error\n");
-		return -1;
+
+		return true;
 	}
-	ret = pthread_create(&aunt_id, NULL, canteen, NULL);
-	if (ret != 0)
+	bool Pop(int* data)
 	{
-		printf("create thread error\n");
-		return -1;
+		return true;
 	}
-	pthread_join(stu_id, NULL);
-	pthread_join(aunt_id, NULL);
-	pthread_mutex_destroy(&mutex);
-	pthread_cond_destroy(&cond);
-	return 0;
-}
+private:
+	std::queue<int> _queue;
+	int _capacity;
+	pthread_mutex_t _mutex;
+	pthread_cond_t _cond_pro;
+	pthread_cond_t _cond_con;
+};
