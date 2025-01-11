@@ -429,38 +429,38 @@
 //	pthread_cond_destroy(&cond);
 //	return 0;
 //}
-#include<iostream>
-#include<cstdio>
-#include<cstdlib>
-#include<queue>
-#include<pthread.h>
-#define MAXQ 10
-class BlockQueue
-{
-public:
-	BlockQueue(int maxq=MAXQ):_capacity(maxq){
-		pthread_mutex_init(&_mutex, NULL);
-		pthread_cond_init(&_cond_pro, NULL);
-		pthread_cond_init(&_cond_con, NULL);
-	}
-	~BlockQueue(){
-		pthread_mutex_destroy(&_mutex);
-		pthread_cond_destroy(&_cond_pro);
-		pthread_cond_destroy(&_cond_con);
-	}
-	bool Push(int data)
-	{
-
-		return true;
-	}
-	bool Pop(int* data)
-	{
-		return true;
-	}
-private:
-	std::queue<int> _queue;
-	int _capacity;
-	pthread_mutex_t _mutex;
-	pthread_cond_t _cond_pro;
-	pthread_cond_t _cond_con;
-};
+//#include<iostream>
+//#include<cstdio>
+//#include<cstdlib>
+//#include<queue>
+//#include<pthread.h>
+//#define MAXQ 10
+//class BlockQueue
+//{
+//public:
+//	BlockQueue(int maxq=MAXQ):_capacity(maxq){
+//		pthread_mutex_init(&_mutex, NULL);
+//		pthread_cond_init(&_cond_pro, NULL);
+//		pthread_cond_init(&_cond_con, NULL);
+//	}
+//	~BlockQueue(){
+//		pthread_mutex_destroy(&_mutex);
+//		pthread_cond_destroy(&_cond_pro);
+//		pthread_cond_destroy(&_cond_con);
+//	}
+//	bool Push(int data)
+//	{
+//
+//		return true;
+//	}
+//	bool Pop(int* data)
+//	{
+//		return true;
+//	}
+//private:
+//	std::queue<int> _queue;
+//	int _capacity;
+//	pthread_mutex_t _mutex;
+//	pthread_cond_t _cond_pro;
+//	pthread_cond_t _cond_con;
+//};
