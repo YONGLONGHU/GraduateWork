@@ -464,3 +464,32 @@
 //	pthread_cond_t _cond_pro;
 //	pthread_cond_t _cond_con;
 //};
+#include <iostream>
+
+bool isPowerOfTwo(int n) {
+    // 基础情况：如果 n 是 1，那么它是 2 的 0 次幂，所以返回 true。
+    if (n == 1) {
+        return true;
+    }
+    // 如果 n 是偶数，递归地检查 n/2 是否是 2 的幂次方。
+    else if (n % 2 == 0) {
+        return isPowerOfTwo(n / 2);
+    }
+    // 如果 n 是奇数，那么它不是 2 的幂次方，所以返回 false。
+    else {
+        return false;
+    }
+}
+
+int main() {
+    int n;
+    std::cout << "请输入一个整数: ";
+    std::cin >> n;
+    if (isPowerOfTwo(n)) {
+        std::cout << n << " 是 2 的幂次方。" << std::endl;
+    }
+    else {
+        std::cout << n << " 不是 2 的幂次方。" << std::endl;
+    }
+    return 0;
+}
