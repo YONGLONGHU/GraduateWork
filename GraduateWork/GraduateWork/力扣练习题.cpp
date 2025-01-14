@@ -464,32 +464,73 @@
 //	pthread_cond_t _cond_pro;
 //	pthread_cond_t _cond_con;
 //};
-#include <iostream>
-
-bool isPowerOfTwo(int n) {
-    // 基础情况：如果 n 是 1，那么它是 2 的 0 次幂，所以返回 true。
-    if (n == 1) {
-        return true;
-    }
-    // 如果 n 是偶数，递归地检查 n/2 是否是 2 的幂次方。
-    else if (n % 2 == 0) {
-        return isPowerOfTwo(n / 2);
-    }
-    // 如果 n 是奇数，那么它不是 2 的幂次方，所以返回 false。
-    else {
-        return false;
-    }
-}
-
-int main() {
-    int n;
-    std::cout << "请输入一个整数: ";
-    std::cin >> n;
-    if (isPowerOfTwo(n)) {
-        std::cout << n << " 是 2 的幂次方。" << std::endl;
-    }
-    else {
-        std::cout << n << " 不是 2 的幂次方。" << std::endl;
-    }
-    return 0;
+//#include <iostream>
+//
+//bool isPowerOfTwo(int n) {
+//    // 基础情况：如果 n 是 1，那么它是 2 的 0 次幂，所以返回 true。
+//    if (n == 1) {
+//        return true;
+//    }
+//    // 如果 n 是偶数，递归地检查 n/2 是否是 2 的幂次方。
+//    else if (n % 2 == 0) {
+//        return isPowerOfTwo(n / 2);
+//    }
+//    // 如果 n 是奇数，那么它不是 2 的幂次方，所以返回 false。
+//    else {
+//        return false;
+//    }
+//}
+//
+//int main() {
+//    int n;
+//    std::cout << "请输入一个整数: ";
+//    std::cin >> n;
+//    if (isPowerOfTwo(n)) {
+//        std::cout << n << " 是 2 的幂次方。" << std::endl;
+//    }
+//    else {
+//        std::cout << n << " 不是 2 的幂次方。" << std::endl;
+//    }
+//    return 0;
+//}
+#include<netdb.h>
+#include<sys/socket.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<memory.h>
+#include<unistd>
+int main(int argc,char*argv[])
+{
+	if (argc < 3)
+	{
+		printf("usage:%s ip port\n", argv[0]);
+		exit(1);
+	}
+	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sockfd < 0)
+	{
+		perror("socket error");
+		exit(1);
+	}
+	struct sockaddr_in serveraddr;
+	memset(&serveraddr, 0, sizeof(serveraddr));
+	serveraddr.sin_family = AF_INET;
+	serveraddr.sin_port = htons(atoi(argv[2]));
+	inet_pton(AF_INET, argv[1], &serveraddr.sin_addr.s_addr);
+	if (connect(sockfd, (struct sockaddr*)&serveraddr), sizeof(serveraddr) < 0) {
+		perror("connect error");
+		exit(1);
+	}
+	char buffer[1024];
+	memset(buffer, 0, sizeof(buffer));
+	size_t size;
+	if ((size = read(sockfd, buffer, sizeof(buffer))) < 0)
+		perror("read error");
+	if (write(STDOUT_FILENO, buffer, size) != size)
+	{
+		perror("write error");
+	}
+	close(sockfd);
+	return 0;
 }
