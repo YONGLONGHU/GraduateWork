@@ -534,27 +534,27 @@
 //	close(sockfd);
 //	return 0;
 //}
-//class Solution {
-//public:
-//    vector<int> productExceptSelf(vector<int>& nums) {
-//        vector<int> result(nums.size());
-//        int sum = 1;
-//        for (auto& e : nums)
-//            sum *= e;
-//        for (int i = 0; i < nums.size(); i++) {
-//            if (nums[i] != 0)
-//                result[i] = sum / nums[i];
-//            else {
-//                int temp = 1;
-//                for (int j = 0; j < nums.size(); j++) {
-//                    if (j == i)
-//                        continue;
-//                    else
-//                        temp = temp * nums[j];
-//                }
-//                result[i] = temp;
-//            }
-//        }
-//        return result;
-//    }
-//};
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> result(nums.size());
+        int sum = 1;
+        for (auto& e : nums)
+            sum *= e;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0)
+                result[i] = sum / nums[i];
+            else {
+                int temp = 1;
+                for (int j = 0; j < nums.size(); j++) {
+                    if (j == i)
+                        continue;
+                    else
+                        temp = temp * nums[j];
+                }
+                result[i] = temp;
+            }
+        }
+        return result;
+    }
+};
