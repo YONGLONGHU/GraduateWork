@@ -572,3 +572,39 @@
 //        return false;
 //    }
 //};
+//#include <iostream>
+//#include <algorithm> // 用于std::swap函数
+//
+//using namespace std;
+//
+//void bubbleSort(int arr[], int size) {
+//    for (int i = 0; i < size - 1; ++i) {
+//        bool swapped = false; // 优化标志位
+//        for (int j = 0; j < size - i - 1; ++j) {
+//            if (arr[j] > arr[j + 1]) {
+//                swap(arr[j], arr[j + 1]);
+//                swapped = true;
+//            }
+//        }
+//        if (!swapped) break; // 本轮未交换说明已有序
+//    }
+//}
+//
+//int main() {
+//    int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+//    int size = sizeof(arr) / sizeof(arr[0]);
+//
+//    cout << "原始数组: ";
+//    for (int i = 0; i < size; i++) {
+//        cout << arr[i] << " ";
+//    }
+//
+//    bubbleSort(arr, size);
+//
+//    cout << "\n排序后数组: ";
+//    for (int i = 0; i < size; i++) {
+//        cout << arr[i] << " ";
+//    }
+//
+//    return 0;
+//}
