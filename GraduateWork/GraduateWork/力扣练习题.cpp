@@ -608,3 +608,70 @@
 //
 //    return 0;
 //}
+//#include <iostream>
+//using namespace std;
+//
+//// 调整以i为根的子树为大顶堆
+//void heapify(int arr[], int n, int i) {
+//    int largest = i;        // 初始化最大值为当前节点
+//    int left = 2 * i + 1;   // 左子节点索引
+//    int right = 2 * i + 2;  // 右子节点索引
+//
+//    // 如果左子节点存在且大于当前最大值
+//    if (left < n && arr[left] > arr[largest])
+//        largest = left;
+//
+//    // 如果右子节点存在且大于当前最大值
+//    if (right < n && arr[right] > arr[largest])
+//        largest = right;
+//
+//    // 如果最大值不是当前节点，交换并继续调整
+//    if (largest != i) {
+//        swap(arr[i], arr[largest]);
+//        heapify(arr, n, largest);  // 递归调整受影响的子树
+//    }
+//}
+//
+//// 构建大顶堆
+//void buildHeap(int arr[], int n) {
+//    // 从最后一个非叶子节点开始调整（n/2 - 1）
+//    for (int i = n / 2 - 1; i >= 0; i--)
+//        heapify(arr, n, i);
+//}
+//
+//// 堆排序主函数
+//void heapSort(int arr[], int n) {
+//    // 1. 构建初始大顶堆
+//    buildHeap(arr, n);
+//
+//    // 2. 逐个提取堆顶元素（最大值）
+//    for (int i = n - 1; i > 0; i--) {
+//        // 将当前堆顶移到数组末尾
+//        swap(arr[0], arr[i]);
+//
+//        // 调整剩余元素为新堆（大小减1）
+//        heapify(arr, i, 0);
+//    }
+//}
+//
+//// 打印数组
+//void printArray(int arr[], int n) {
+//    for (int i = 0; i < n; ++i)
+//        cout << arr[i] << " ";
+//    cout << "\n";
+//}
+//
+//int main() {
+//    int arr[] = { 12, 11, 13, 5, 6, 7 };
+//    int n = sizeof(arr) / sizeof(arr[0]);
+//
+//    cout << "原始数组: ";
+//    printArray(arr, n);
+//
+//    heapSort(arr, n);
+//
+//    cout << "排序后数组: ";
+//    printArray(arr, n);
+//
+//    return 0;
+//}
