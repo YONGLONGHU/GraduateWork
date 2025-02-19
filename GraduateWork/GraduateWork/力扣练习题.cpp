@@ -675,3 +675,54 @@
 //
 //    return 0;
 //}
+//#include <iostream>
+//#include <thread>
+//using namespace std;
+//
+//// 线程函数：共享进程资源
+//void printMessage(const string& msg) {
+//    cout << "Thread: " << msg << endl; // 共享cout资源
+//}
+//
+//int main() {
+//    // 创建两个线程（属于同一进程）
+//    thread t1(printMessage, "Hello");
+//    thread t2(printMessage, "World");
+//
+//    // 等待线程结束
+//    t1.join();
+//    t2.join();
+//
+//    return 0;
+//}
+//#include <pthread.h>
+//#include <semaphore.h>
+//#include <stdio.h>
+//
+//sem_t sem;
+//
+//void* thread_function(void* arg) {
+//    sem_wait(&sem);  // 获取信号量
+//    printf("Thread is in the critical section.\n");
+//    sem_post(&sem);  // 释放信号量
+//    return NULL;
+//}
+//
+//int main() {
+//    pthread_t threads[3];
+//
+//    sem_init(&sem, 0, 1);  // 初始化信号量，初始值为 1，表示一个资源
+//
+//    // 创建多个线程
+//    for (int i = 0; i < 3; i++) {
+//        pthread_create(&threads[i], NULL, thread_function, NULL);
+//    }
+//
+//    // 等待线程结束
+//    for (int i = 0; i < 3; i++) {
+//        pthread_join(threads[i], NULL);
+//    }
+//
+//    sem_destroy(&sem);  // 销毁信号量
+//    return 0;
+//}
