@@ -726,3 +726,43 @@
 //    sem_destroy(&sem);  // 销毁信号量
 //    return 0;
 //}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <unistd.h>
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <sys/epoll.h>
+//
+//#define MAX_EVENTS 10
+//
+//int main() {
+//    int listen_fd, epoll_fd;
+//    struct epoll_event ev, events[MAX_EVENTS];
+//
+//    // 创建监听套接字
+//    listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+//    if (listen_fd == -1) {
+//        perror("socket");
+//        exit(1);
+//    }
+//
+//    // 设置监听套接字
+//    struct sockaddr_in addr;
+//    addr.sin_family = AF_INET;
+//    addr.sin_addr.s_addr = INADDR_ANY;
+//    addr.sin_port = htons(8080);
+//    bind(listen_fd, (struct sockaddr*)&addr, sizeof(addr));
+//    listen(listen_fd, 10);
+//
+//    // 创建 epoll 实例
+//    epoll_fd = epoll_create(1);
+//    if (epoll_fd == -1) {
+//        perror("epoll_create");
+//        exit(1);
+//    }
+//
+//    // 将监听套接字添加到 epoll 实例中
+//    ev.events = EPOLLIN;
+//    ev.data.fd = listen_fd;
+//    if (ep
