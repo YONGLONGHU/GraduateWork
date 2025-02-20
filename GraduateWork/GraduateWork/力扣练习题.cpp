@@ -766,3 +766,33 @@
 //    ev.events = EPOLLIN;
 //    ev.data.fd = listen_fd;
 //    if (ep
+//#include <stdio.h>
+//#include <signal.h>
+//#include <stdlib.h>
+//
+//void signal_handler(int signum) {
+//    printf("Received signal %d\n", signum);
+//    exit(0);
+//}
+//
+//int main() {
+//    signal(SIGINT, signal_handler);  // 捕获 SIGINT 信号
+//    while (1);  // 持续运行，等待信号
+//}
+#include <stdio.h>
+#include <signal.h>
+#include <stdlib.h>
+
+void signal_handler(int signum) {
+    printf("Caught signal %d\n", signum);
+    exit(0);
+}
+
+int main() {
+    struct sigaction sa;
+    sa.sa_handler = signal_handler;
+    sigemptyset(&sa.sa_mask);  // 设置空的信号集
+    sa.sa_flags = 0;  // 默认行为
+    sigaction(SIGINT, &sa, NULL);  // 捕获 SIGINT 信号
+    while (1);
+}
