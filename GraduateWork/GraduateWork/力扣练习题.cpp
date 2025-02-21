@@ -779,20 +779,60 @@
 //    signal(SIGINT, signal_handler);  // 捕获 SIGINT 信号
 //    while (1);  // 持续运行，等待信号
 //}
+//#include <stdio.h>
+//#include <signal.h>
+//#include <stdlib.h>
+//
+//void signal_handler(int signum) {
+//    printf("Caught signal %d\n", signum);
+//    exit(0);
+//}
+//
+//int main() {
+//    struct sigaction sa;
+//    sa.sa_handler = signal_handler;
+//    sigemptyset(&sa.sa_mask);  // 设置空的信号集
+//    sa.sa_flags = 0;  // 默认行为
+//    sigaction(SIGINT, &sa, NULL);  // 捕获 SIGINT 信号
+//    while (1);
+//}
 #include <stdio.h>
-#include <signal.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <sys/epoll.h>
 
-void signal_handler(int signum) {
-    printf("Caught signal %d\n", signum);
-    exit(0);
-}
+#define MAX_EVENTS 10
 
 int main() {
-    struct sigaction sa;
-    sa.sa_handler = signal_handler;
-    sigemptyset(&sa.sa_mask);  // 设置空的信号集
-    sa.sa_flags = 0;  // 默认行为
-    sigaction(SIGINT, &sa, NULL);  // 捕获 SIGINT 信号
-    while (1);
-}
+    int listen_fd, epoll_fd;
+    struct epoll_event ev, events[MAX_EVENTS];
+
+    // 创建监听套接字
+    listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (listen_fd == -1) {
+        perror("socket");
+        exit(1);
+    }
+
+    // 设置监听套接字
+    struct sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = INADDR_ANY;
+    addr.sin_port = htons(8080);
+    bind(listen_fd, (struct sockaddr*)&addr, sizeof(addr));
+    listen(listen_fd, 10);
+
+    // 创建 epoll 实例
+    epoll_fd = epoll_create(1);
+    if (epoll_fd == -1) {
+        perror("epoll_create");
+        exit(1);
+    }
+
+    // 将监听套接字添加到 epoll 实例中
+    ev.events = EPOLLIN;
+    ev.data.fd = listen_fd;
+    if (ep
