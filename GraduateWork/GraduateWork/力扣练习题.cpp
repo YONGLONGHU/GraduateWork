@@ -796,43 +796,109 @@
 //    sigaction(SIGINT, &sa, NULL);  // 捕获 SIGINT 信号
 //    while (1);
 //}
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <sys/epoll.h>
-
-#define MAX_EVENTS 10
-
-int main() {
-    int listen_fd, epoll_fd;
-    struct epoll_event ev, events[MAX_EVENTS];
-
-    // 创建监听套接字
-    listen_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (listen_fd == -1) {
-        perror("socket");
-        exit(1);
-    }
-
-    // 设置监听套接字
-    struct sockaddr_in addr;
-    addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = INADDR_ANY;
-    addr.sin_port = htons(8080);
-    bind(listen_fd, (struct sockaddr*)&addr, sizeof(addr));
-    listen(listen_fd, 10);
-
-    // 创建 epoll 实例
-    epoll_fd = epoll_create(1);
-    if (epoll_fd == -1) {
-        perror("epoll_create");
-        exit(1);
-    }
-
-    // 将监听套接字添加到 epoll 实例中
-    ev.events = EPOLLIN;
-    ev.data.fd = listen_fd;
-    if (ep
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <unistd.h>
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <sys/epoll.h>
+//
+//#define MAX_EVENTS 10
+//
+//int main() {
+//    int listen_fd, epoll_fd;
+//    struct epoll_event ev, events[MAX_EVENTS];
+//
+//    // 创建监听套接字
+//    listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+//    if (listen_fd == -1) {
+//        perror("socket");
+//        exit(1);
+//    }
+//
+//    // 设置监听套接字
+//    struct sockaddr_in addr;
+//    addr.sin_family = AF_INET;
+//    addr.sin_addr.s_addr = INADDR_ANY;
+//    addr.sin_port = htons(8080);
+//    bind(listen_fd, (struct sockaddr*)&addr, sizeof(addr));
+//    listen(listen_fd, 10);
+//
+//    // 创建 epoll 实例
+//    epoll_fd = epoll_create(1);
+//    if (epoll_fd == -1) {
+//        perror("epoll_create");
+//        exit(1);
+//    }
+//
+//    // 将监听套接字添加到 epoll 实例中
+//    ev.events = EPOLLIN;
+//    ev.data.fd = listen_fd;
+//    if (ep
+//#include <iostream>
+//#include <set>
+//
+//int main() {
+//    std::set<int> s = { 3, 1, 4, 1, 5 }; // 重复元素会被忽略
+//    s.insert(2);
+//    for (int x : s) {
+//        std::cout << x << " "; // 输出 "1 2 3 4 5"
+//    }
+//    return 0;
+//}
+//#include <iostream>
+//#include <map>
+//
+//int main() {
+//    std::map<std::string, int> m = { {"apple", 1}, {"banana", 2} };
+//    m["orange"] = 3; // 插入或修改
+//    for (const auto& kv : m) {
+//        std::cout << kv.first << ": " << kv.second << std::endl;
+//    }
+//    return 0;
+//}
+//#include <iostream>
+//#include <set>
+//
+//int main() {
+//    std::multiset<int> ms = { 3, 1, 4, 1, 5 }; // 允许重复元素
+//    ms.insert(2);
+//    for (int x : ms) {
+//        std::cout << x << " "; // 输出 "1 1 2 3 4 5"
+//    }
+//    return 0;
+//}
+//#include <iostream>
+//#include <map>
+//
+//int main() {
+//    std::multimap<std::string, int> mm = { {"apple", 1}, {"banana", 2}, {"apple", 3} };
+//    mm.insert({ "orange", 4 });
+//    for (const auto& kv : mm) {
+//        std::cout << kv.first << ": " << kv.second << std::endl;
+//    }
+//    return 0;
+//}
+//#include <iostream>
+//#include <unordered_set>
+//
+//int main() {
+//    std::unordered_set<int> us = { 3, 1, 4, 1, 5 }; // 重复元素会被忽略
+//    us.insert(2);
+//    for (int x : us) {
+//        std::cout << x << " "; // 输出顺序不确定
+//    }
+//    return 0;
+//}
+//#include <iostream>
+//#include <unordered_map>
+//
+//int main() {
+//    std::unordered_map<std::string, int> um = { {"apple", 1}, {"banana", 2} };
+//    um["orange"] = 3; // 插入或修改
+//    for (const auto& kv : um) {
+//        std::cout << kv.first << ": " << kv.second << std::endl;
+//    }
+//    return 0;
+//}
