@@ -902,3 +902,64 @@
 //    }
 //    return 0;
 //}
+
+//#include"index.hpp"
+//#include<algorithm>
+//#include"util.hpp"
+//#include<jsoncpp/json/json.h>
+//namespace ns_searcher
+//{
+//    class Searcher
+//    {
+//    private:
+//        ns_index::Index* index;
+//    public:
+//        Searcher() {}
+//        ~Searcher() {}
+//    public:
+//        void InitSearcher(const std::string& input)
+//        {
+//            //1.创建index对象
+//            index = ns_index::Index::GetInstance();
+//            //2.创建索引
+//            index->BuildIndex(input);
+//        }
+//        void Search(const std::string& query, std::string* json_string)
+//        {
+//            //1.对query进行分词处理
+//            std::vector<std::string> words;
+//            ns_util::JiebaUtil::CutString(query, &words);
+//            //2.根据各个词，进行index查找
+//            ns_index::InvertedList inverted_list_all;
+//            for (std::string word : words)
+//            {
+//                boost::to_lower(word);
+//                ns_index::InvertedList* inverted_list = index->GetInvertedList(word);
+//                if (nullptr == inverted_list)
+//                    continue;
+//                inverted_list_all.insert(inverted_list_all.end(), inverted_list.begin(), inverted_list.end());
+//            }
+//            //3.汇总结果，根据相关性降序排序
+//            std::sort(inverted_list_all.begin(), inverted_list_all.end(), [](const ns_index::InvertedElem& e1, const ns_index::InvertedElem& e2) {
+//                return e1.weight > e2.weight;
+//                });
+//            //4.根据结果构建json串
+//            Json::Value root;
+//            for (auto& item : inverted_list_all)
+//            {
+//                ns_index::DocInfo* doc = index->GetForwardIndex(item.doc_id);
+//                if (nullptr == doc)
+//                    continue;
+//            }
+//            Json::Value elem;
+//            elem["title"] = doc->title;
+//            elem["desc"] = doc->content;
+//            elem["url"] = doc->url;
+//
+//            root.append(elem);
+//        }
+//        Json::StyledWriter writer;
+//        *json_string = writer.write(root);
+//
+//    };
+//}
