@@ -1027,3 +1027,189 @@
 //    svr.listen("0.0.0.0", 8083);
 //    return 0;
 //}
+//#include "cpp-httplib/httplib.h"
+//#include "search.hpp"
+//#include <mysql-cppconn/jdbc/mysql_driver.h>
+//#include <mysql-cppconn/jdbc/mysql_connection.h>
+//#include <mysql-cppconn/jdbc/cppconn/statement.h>
+//#include <mysql-cppconn/jdbc/cppconn/prepared_statement.h>
+//#include <mysql-cppconn/jdbc/cppconn/resultset.h>
+//#include <mysql-cppconn/jdbc/cppconn/exception.h>
+//#include <jsoncpp/json/json.h>
+//#include <iostream>
+//#include <sstream>
+//
+//using namespace httplib;
+//
+//const std::string root_path = "./wwwroot";
+//const std::string input = "data/raw_html/raw.txt";
+//
+//int main() {
+//    ns_searcher::Searcher search;
+//    search.InitSearcher(input);
+//
+//    Server svr;
+//    svr.set_base_dir(root_path.c_str());
+//
+//    // MySQL 配置
+//    sql::mysql::MySQL_Driver* driver;
+//    sql::Connection* con;
+//    try {
+//        driver = sql::mysql::get_mysql_driver_instance();
+//        con = driver->connect("tcp://127.0.0.1:3306", "root", "HYou99291234.");
+//        con->setSchema("search_engine_db");
+//    }
+//    catch (sql::SQLException& e) {
+//        std::cerr << "MySQL Error: " << e.what() << std::endl;
+//        return 1;
+//    }
+//
+//    // 创建用户表（如果不存在）
+//    sql::Statement* stmt = con->createStatement();
+//    stmt->execute("CREATE TABLE IF NOT EXISTS users ("
+//        "id INT AUTO_INCREMENT PRIMARY KEY,"
+//        "username VARCHAR(50) UNIQUE NOT NULL,"
+//        "password VARCHAR(50) NOT NULL)");
+//
+//    // 搜索接口
+//    svr.Get("/s", [&search](const Request& req, Response& rsp) {
+//        if (!req.has_param("word")) {
+//            rsp.set_content("必须要有关键字才能搜索！", "text/plain;charset=utf-8");
+//            return;
+//        }
+//        std::string word = req.get_param_value("word");
+//        std::cout << "用户正在搜索： " << word << std::endl;
+//        std::string json_string;
+//        search.Search(word, &json_string);
+//        rsp.set_content(json_string, "application/json");
+//        });
+//
+//    // 登录接口（保持不变）
+//    svr.Post("/login", [&](const Request& req, Response& rsp) {
+//        Json::Value response;
+//        Json::Reader reader;
+//        try {
+//            Json::Value data;
+//            if (!reader.parse(req.body, data)) {
+//                response["success"] = false;
+//                response["message"] = "JSON 解析错误";
+//                rsp.set_content(response.toStyledString(), "application/json");
+//                return;
+//            }
+//            std::string username = data["username"].asString();
+//            std::string password = data["password"].asString();
+//            sql::PreparedStatement* pstmt = con->prepareStatement(
+//                "SELECT * FROM users WHERE username = ? AND password = ?");
+//            pstmt->setString(1, username);
+//            pstmt->setString(2, password);
+//            sql::ResultSet* result = pstmt->executeQuery();
+//            if (result->next()) {
+//                response["success"] = true;
+//            }
+//            else {
+//                response["success"] = false;
+//                response["message"] = "用户名或密码错误";
+//            }
+//            delete result;
+//            delete pstmt;
+//        }
+//        catch (const std::exception& e) {
+//            response["success"] = false;
+//            response["message"] = "服务器错误";
+//        }
+//        Json::FastWriter writer;
+//        rsp.set_content(writer.write(response), "application/json");
+//        });
+//
+//    // 注册接口（保持不变）
+//    svr.Post("/register", [&](const Request& req, Response& rsp) {
+//        Json::Value response;
+//        Json::Reader reader;
+//        try {
+//            Json::Value data;
+//            if (!reader.parse(req.body, data)) {
+//                response["success"] = false;
+//                response["message"] = "JSON 解析错误";
+//                rsp.set_content(response.toStyledString(), "application/json");
+//                return;
+//            }
+//            std::string username = data["username"].asString();
+//            std::string password = data["password"].asString();
+//            sql::PreparedStatement* checkStmt = con->prepareStatement(
+//                "SELECT * FROM users WHERE username = ?");
+//            checkStmt->setString(1, username);
+//            sql::ResultSet* result = checkStmt->executeQuery();
+//            if (result->next()) {
+//                response["success"] = false;
+//                response["message"] = "用户名已存在";
+//            }
+//            else {
+//                sql::PreparedStatement* insertStmt = con->prepareStatement(
+//                    "INSERT INTO users (username, password) VALUES (?, ?)");
+//                insertStmt->setString(1, username);
+//                insertStmt->setString(2, password);
+//                insertStmt->execute();
+//                response["success"] = true;
+//            }
+//            delete result;
+//            delete checkStmt;
+//        }
+//        catch (const std::exception& e) {
+//            response["success"] = false;
+//            response["message"] = "服务器错误";
+//        }
+//        Json::FastWriter writer;
+//        rsp.set_content(writer.write(response), "application/json");
+//        });
+//
+//    // 获取 lz_test 表所有数据的接口
+//    svr.Get("/get_lz_test", [&](const Request& req, Response& rsp) {
+//        Json::Value response;
+//        Json::Value dataArray;
+//
+//        try {
+//            sql::Statement* stmt = con->createStatement();
+//            sql::ResultSet* result = stmt->executeQuery("SELECT * FROM lz_test");
+//
+//            while (result->next()) {
+//                Json::Value item;
+//                item["AlarmName"] = result->getString("AlarmName").asStdString();
+//                item["DeviceId"] = result->getString("DeviceId").asStdString();
+//                item["DeviceNumber"] = result->getInt("DeviceNumber");
+//                item["Position"] = result->getString("Position").asStdString();
+//                item["AlarmLevel"] = result->getString("AlarmLevel").asStdString();
+//                item["AlarmClass"] = result->getString("AlarmClass").asStdString();
+//                item["StateValue"] = result->getString("StateValue").asStdString();
+//                item["AlarmImage"] = result->isNull("AlarmImage") ? Json::Value(Json::nullValue) : Json::Value(result->getString("AlarmImage").asStdString());
+//                item["AlarmTime"] = result->getString("AlarmTime").asStdString();
+//                item["ProductClass"] = result->getString("ProductClass").asStdString();
+//                item["Confirm"] = result->getString("Confirm").asStdString();
+//                dataArray.append(item);
+//            }
+//
+//            response["success"] = true;
+//            response["data"] = dataArray;
+//
+//            delete result;
+//            delete stmt;
+//        }
+//        catch (const sql::SQLException& e) {
+//            response["success"] = false;
+//            response["message"] = "数据库查询失败: " + std::string(e.what());
+//        }
+//        catch (const std::exception& e) {
+//            response["success"] = false;
+//            response["message"] = "服务器错误: " + std::string(e.what());
+//        }
+//
+//        Json::FastWriter writer;
+//        rsp.set_content(writer.write(response), "application/json");
+//        });
+//
+//    std::cout << "Server started at http://192.168.1.106:8083" << std::endl;
+//    svr.listen("0.0.0.0", 8083);
+//
+//    delete stmt;
+//    delete con;
+//    return 0;
+//}
