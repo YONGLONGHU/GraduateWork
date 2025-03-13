@@ -5,7 +5,11 @@
       <FullPath>D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\Debug\GraduateWork.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\GraduateWork\HTMLPage.htm</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>
