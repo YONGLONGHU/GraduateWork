@@ -1,17 +1,14 @@
-#include <stdio.h>  
- 
-extern "C"  //要加extern "C",  C为大写，小写会无法识别。
-{
-    int add(int a, int b)
-    {
+// 原 test.cpp
+#include <iostream>
+extern "C" {
+    __declspec(dllexport) int add(int a, int b) {
         return a + b;
     }
- 
-    void print_sum(unsigned long ulNum)
-    {
-        while (ulNum != 0)
-        {
-            printf("The ulNum is : %u\n", ulNum--);
+    __declspec(dllexport) void print_sum(int n) {
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += i;
         }
+        std::cout << "Sum from 1 to " << n << " is " << sum << std::endl;
     }
 }
