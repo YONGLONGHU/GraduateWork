@@ -1821,3 +1821,17 @@ void TestList5()
 	cout << l2.size() << endl;
 }
 
+class Solution {
+public:
+	int maxSubArray(vector<int>& nums)
+	{
+		int fi = nums[0];
+		int maxfi = nums[0];
+		for (int i = 1; i < nums.size(); ++i)
+		{
+			fi = max(nums[i], nums[i] + fi);
+			maxfi = max(maxfi, fi);
+		}
+		return maxfi;
+	}
+};
