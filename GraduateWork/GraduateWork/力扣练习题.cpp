@@ -1821,17 +1821,64 @@ void TestList5()
 	cout << l2.size() << endl;
 }
 
-class Solution {
-public:
-	int maxSubArray(vector<int>& nums)
-	{
-		int fi = nums[0];
-		int maxfi = nums[0];
-		for (int i = 1; i < nums.size(); ++i)
-		{
-			fi = max(nums[i], nums[i] + fi);
-			maxfi = max(maxfi, fi);
-		}
-		return maxfi;
-	}
-};
+//class Solution {
+//public:
+//	int maxSubArray(vector<int>& nums)
+//	{
+//		int fi = nums[0];
+//		int maxfi = nums[0];
+//		for (int i = 1; i < nums.size(); ++i)
+//		{
+//			fi = max(nums[i], nums[i] + fi);
+//			maxfi = max(maxfi, fi);
+//		}
+//		return maxfi;
+//	}
+//};
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <unistd.h>  // 提供 fork() 和 sleep() 函数
+//#include <sys/wait.h>  // 提供 wait() 函数
+//
+//int main() {
+//	pid_t pid;  // 用于存储进程 ID
+//
+//	// 创建子进程
+//	pid = fork();
+//
+//	if (pid < 0) {
+//		// fork() 失败
+//		fprintf(stderr, "Fork failed\n");
+//		exit(1);
+//	}
+//	else if (pid == 0) {
+//		// 子进程
+//		printf("Child process: PID = %d\n", getpid());
+//		sleep(2);  // 模拟子进程执行任务
+//		printf("Child process: Task completed, exiting...\n");
+//		exit(0);  // 子进程正常终止
+//	}
+//	else {
+//		// 父进程
+//		printf("Parent process: PID = %d, Child PID = %d\n", getpid(), pid);
+//		printf("Parent process: Waiting for child to finish...\n");
+//
+//		// 等待子进程结束
+//		int status;
+//		wait(&status);  // 阻塞等待子进程结束
+//
+//		if (WIFEXITED(status)) {
+//			// 子进程正常终止
+//			printf("Parent process: Child exited with status %d\n", WEXITSTATUS(status));
+//		}
+//		else {
+//			// 子进程异常终止
+//			printf("Parent process: Child process terminated abnormally\n");
+//		}
+//
+//		printf("Parent process: Exiting...\n");
+//	}
+//
+//	return 0;
+//}
