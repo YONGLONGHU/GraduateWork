@@ -1882,3 +1882,32 @@ void TestList5()
 //
 //	return 0;
 //}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <fcntl.h>
+//#include <unistd.h>
+//
+//int main() {
+//	int fd;
+//
+//	// 创建或者打开一个新的文件 test.txt 进行写入操作
+//	fd = open("test.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+//	if (fd == -1) {
+//		perror("open failed");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	// 将标准输出重定向到刚刚创建好的文件 descriptor 上去
+//	if (dup2(fd, STDOUT_FILENO) == -1) {
+//		perror("dup2 failed");
+//		close(fd);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	// 关闭原来的文件句柄以防泄漏
+//	close(fd);
+//
+//	printf("This message will be written to the file instead of terminal.\n");
+//
+//	return 0;
+//}
