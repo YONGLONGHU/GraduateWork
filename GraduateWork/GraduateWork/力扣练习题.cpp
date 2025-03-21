@@ -1970,3 +1970,54 @@ void TestList5()
 //	cout << "result: " << wait << ": " << strerror(wait) << endl;
 //	return 0;
 //}
+//
+//#include<iostream>
+//#include<string>
+//#include<pthread.h>
+//#include<unistd.h>
+//using namespace std;
+//
+//int tickets = 10000;
+//pthread_mutex_t lock;
+//void* getTickets(void* args)
+//{
+//	string use_name = static_cast<const char*>(args);
+//	while (true)
+//	{
+//		//加锁：
+//		pthread_mutex_lock(&lock);
+//		if (tickets > 0)
+//		{
+//			usleep(1234);
+//			cout << use_name << " 正在进行抢票 " << tickets-- << endl;
+//			//解锁
+//			pthread_mutex_unlock(&lock);
+//		}
+//		else
+//		{
+//			//解锁
+//			pthread_mutex_unlock(&lock);
+//			break;
+//		}
+//		//让该线程生成订单，其它线程再申请抢票
+//		usleep(1234);
+//	}
+//}
+//int main()
+//{
+//	//初始化锁
+//	pthread_mutex_init(&lock, nullptr);
+//	pthread_t t1, t2, t3, t4;
+//	pthread_create(&t1, nullptr, getTickets, (void*)"thread 1");
+//	pthread_create(&t2, nullptr, getTickets, (void*)"thread 2");
+//	pthread_create(&t3, nullptr, getTickets, (void*)"thread 3");
+//	pthread_create(&t4, nullptr, getTickets, (void*)"thread 4");
+//
+//	pthread_join(t1, nullptr);
+//	pthread_join(t2, nullptr);
+//	pthread_join(t3, nullptr);
+//	pthread_join(t4, nullptr);
+//	//销毁锁
+//	pthread_mutex_destroy(&lock);
+//	return 0;
+//}
