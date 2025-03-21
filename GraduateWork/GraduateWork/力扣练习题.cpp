@@ -1911,3 +1911,62 @@ void TestList5()
 //
 //	return 0;
 //}
+
+//#include <iostream>
+//#include <signal.h>
+//#include <unistd.h>
+//void hander(int sig)
+//{
+//	std::cout << "get a sig" << sig << std::endl;
+//}
+//int main()
+//{
+//	signal(2, hander);
+//	while (true)
+//	{
+//		std::cout << "hello bit, pid: " << getpid() << std::endl;
+//		sleep(1);
+//	}
+//}
+//
+//#include<iostream>
+//#include<pthread.h>
+//#include<stdio.h>
+//#include<cstring>
+//#include<string>
+//#include<assert.h>
+//#include<unistd.h>
+//
+//using namespace std;
+//string changeId(const pthread_t& thread_id)
+//{
+//	char buf[64];
+//	snprintf(buf, sizeof buf, "0x%x", thread_id);
+//	return buf;
+//}
+//void* start_routine(void* args)
+//{
+//	string name = static_cast<const char*>(args);
+//	pthread_detach(pthread_self());//设置自己为分离状态
+//	int cnt = 5;
+//	while (cnt--)
+//	{
+//		string tid = changeId(pthread_self());
+//		cout << "我是新线程" << "线程名：" << name << " " << tid << endl;
+//		sleep(1);
+//	}
+//	return nullptr;
+//}
+//int main()
+//{
+//	pthread_t tid;
+//	pthread_create(&tid, nullptr, start_routine, (void*)"thread 1");
+//	cout << "新线程id: " << changeId(tid) << endl;
+//	//主线程id:
+//	string id = changeId(pthread_self());
+//	cout << "我是主线程" << "主线程id: " << id << endl;
+//	//一个线程默认是joinable的，如果设置了分离状态，就不会再进行等待了
+//	int wait = pthread_join(tid, nullptr);
+//	cout << "result: " << wait << ": " << strerror(wait) << endl;
+//	return 0;
+//}
