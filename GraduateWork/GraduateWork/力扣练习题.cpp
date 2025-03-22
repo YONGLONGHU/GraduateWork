@@ -2021,120 +2021,211 @@ void TestList5()
 //	pthread_mutex_destroy(&lock);
 //	return 0;
 //}
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
-
-// 定义共享缓冲区和相关变量
-#define BUFFER_SIZE 5
-int buffer[BUFFER_SIZE];
-int count = 0; // 缓冲区中的数据个数
-
-// 互斥锁和条件变量
-pthread_mutex_t mutex;
-pthread_cond_t cond_full;  // 缓冲区满时的条件变量
-pthread_cond_t cond_empty; // 缓冲区空时的条件变量
-
-// 生产者函数
-void* producer(void* arg) {
-	int item = 0;
-	while (1) {
-		// 加锁
-		pthread_mutex_lock(&mutex);
-
-		// 如果缓冲区满，等待消费者消费
-		while (count == BUFFER_SIZE) {
-			printf("Producer: Buffer full, waiting...\n");
-			pthread_cond_wait(&cond_full, &mutex);
-		}
-
-		// 生产数据
-		buffer[count] = item;
-		printf("Producer: Produced item %d\n", item);
-		count++;
-		item++;
-
-		// 通知消费者缓冲区非空
-		if (count == 1) {
-			pthread_cond_signal(&cond_empty);
-		}
-
-		// 解锁
-		pthread_mutex_unlock(&mutex);
-
-		// 模拟生产耗时
-		sleep(1);
-	}
-	return NULL;
-}
-
-// 消费者函数
-void* consumer(void* arg) {
-	while (1) {
-		// 加锁
-		pthread_mutex_lock(&mutex);
-
-		// 如果缓冲区空，等待生产者生产
-		while (count == 0) {
-			printf("Consumer: Buffer empty, waiting...\n");
-			pthread_cond_wait(&cond_empty, &mutex);
-		}
-
-		// 消费数据
-		count--;
-		int item = buffer[count];
-		printf("Consumer: Consumed item %d\n", item);
-
-		// 通知生产者缓冲区非满
-		if (count == BUFFER_SIZE - 1) {
-			pthread_cond_signal(&cond_full);
-		}
-
-		// 解锁
-		pthread_mutex_unlock(&mutex);
-
-		// 模拟消费耗时
-		sleep(2);
-	}
-	return NULL;
-}
-
-int main() {
-	pthread_t prod_thread, cons_thread;
-
-	// 初始化互斥锁和条件变量
-	if (pthread_mutex_init(&mutex, NULL) != 0) {
-		perror("Mutex init failed");
-		exit(1);
-	}
-	if (pthread_cond_init(&cond_full, NULL) != 0) {
-		perror("Cond full init failed");
-		exit(1);
-	}
-	if (pthread_cond_init(&cond_empty, NULL) != 0) {
-		perror("Cond empty init failed");
-		exit(1);
-	}
-
-	// 创建生产者和消费者线程
-	if (pthread_create(&prod_thread, NULL, producer, NULL) != 0) {
-		perror("Producer thread creation failed");
-		exit(1);
-	}
-	if (pthread_create(&cons_thread, NULL, consumer, NULL) != 0) {
-		perror("Consumer thread creation failed");
-		exit(1);
-	}
-
-	// 主线程等待子线程结束（这里用无限循环模拟持续运行）
-	pthread_join(prod_thread, NULL);
-	pthread_join(cons_thread, NULL);
-
-	// 销毁互斥锁和条件变量（实际不会到达这里，因线程无限循环）
-	pthread_mutex_destroy(&mutex);
-	pthread_cond_destroy(&cond_full);
-	pthread_cond_destroy(&cond_empty);
-
-	return 0;
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <pthread.h>
+//#include <unistd.h>
+//
+//// 定义共享缓冲区和相关变量
+//#define BUFFER_SIZE 5
+//int buffer[BUFFER_SIZE];
+//int count = 0; // 缓冲区中的数据个数
+//
+//// 互斥锁和条件变量
+//pthread_mutex_t mutex;
+//pthread_cond_t cond_full;  // 缓冲区满时的条件变量
+//pthread_cond_t cond_empty; // 缓冲区空时的条件变量
+//
+//// 生产者函数
+//void* producer(void* arg) {
+//	int item = 0;
+//	while (1) {
+//		// 加锁
+//		pthread_mutex_lock(&mutex);
+//
+//		// 如果缓冲区满，等待消费者消费
+//		while (count == BUFFER_SIZE) {
+//			printf("Producer: Buffer full, waiting...\n");
+//			pthread_cond_wait(&cond_full, &mutex);
+//		}
+//
+//		// 生产数据
+//		buffer[count] = item;
+//		printf("Producer: Produced item %d\n", item);
+//		count++;
+//		item++;
+//
+//		// 通知消费者缓冲区非空
+//		if (count == 1) {
+//			pthread_cond_signal(&cond_empty);
+//		}
+//
+//		// 解锁
+//		pthread_mutex_unlock(&mutex);
+//
+//		// 模拟生产耗时
+//		sleep(1);
+//	}
+//	return NULL;
+//}
+//
+//// 消费者函数
+//void* consumer(void* arg) {
+//	while (1) {
+//		// 加锁
+//		pthread_mutex_lock(&mutex);
+//
+//		// 如果缓冲区空，等待生产者生产
+//		while (count == 0) {
+//			printf("Consumer: Buffer empty, waiting...\n");
+//			pthread_cond_wait(&cond_empty, &mutex);
+//		}
+//
+//		// 消费数据
+//		count--;
+//		int item = buffer[count];
+//		printf("Consumer: Consumed item %d\n", item);
+//
+//		// 通知生产者缓冲区非满
+//		if (count == BUFFER_SIZE - 1) {
+//			pthread_cond_signal(&cond_full);
+//		}
+//
+//		// 解锁
+//		pthread_mutex_unlock(&mutex);
+//
+//		// 模拟消费耗时
+//		sleep(2);
+//	}
+//	return NULL;
+//}
+//
+//int main() {
+//	pthread_t prod_thread, cons_thread;
+//
+//	// 初始化互斥锁和条件变量
+//	if (pthread_mutex_init(&mutex, NULL) != 0) {
+//		perror("Mutex init failed");
+//		exit(1);
+//	}
+//	if (pthread_cond_init(&cond_full, NULL) != 0) {
+//		perror("Cond full init failed");
+//		exit(1);
+//	}
+//	if (pthread_cond_init(&cond_empty, NULL) != 0) {
+//		perror("Cond empty init failed");
+//		exit(1);
+//	}
+//
+//	// 创建生产者和消费者线程
+//	if (pthread_create(&prod_thread, NULL, producer, NULL) != 0) {
+//		perror("Producer thread creation failed");
+//		exit(1);
+//	}
+//	if (pthread_create(&cons_thread, NULL, consumer, NULL) != 0) {
+//		perror("Consumer thread creation failed");
+//		exit(1);
+//	}
+//
+//	// 主线程等待子线程结束（这里用无限循环模拟持续运行）
+//	pthread_join(prod_thread, NULL);
+//	pthread_join(cons_thread, NULL);
+//
+//	// 销毁互斥锁和条件变量（实际不会到达这里，因线程无限循环）
+//	pthread_mutex_destroy(&mutex);
+//	pthread_cond_destroy(&cond_full);
+//	pthread_cond_destroy(&cond_empty);
+//
+//	return 0;
+//}
+//
+//#include <iostream>
+//#include <thread>
+//#include <mutex>
+//#include <condition_variable>
+//#include <chrono>
+//#include <array>
+//
+//// 定义共享缓冲区和相关变量
+//const int BUFFER_SIZE = 5;
+//std::array<int, BUFFER_SIZE> buffer;
+//int count = 0; // 缓冲区中的数据个数
+//
+//// 互斥锁和条件变量
+//std::mutex mtx;
+//std::condition_variable cond_full;  // 缓冲区满时的条件变量
+//std::condition_variable cond_empty; // 缓冲区空时的条件变量
+//
+//// 生产者函数
+//void producer() {
+//	int item = 0;
+//	while (true) {
+//		// 加锁
+//		std::unique_lock<std::mutex> lock(mtx);
+//
+//		// 如果缓冲区满，等待消费者消费
+//		while (count == BUFFER_SIZE) {
+//			std::cout << "Producer: Buffer full, waiting...\n";
+//			cond_full.wait(lock); // 等待缓冲区非满
+//		}
+//
+//		// 生产数据
+//		buffer[count] = item;
+//		std::cout << "Producer: Produced item " << item << "\n";
+//		count++;
+//		item++;
+//
+//		// 通知消费者缓冲区非空
+//		if (count == 1) {
+//			cond_empty.notify_one();
+//		}
+//
+//		// 解锁（unique_lock 析构时自动解锁）
+//		lock.unlock();
+//
+//		// 模拟生产耗时
+//		std::this_thread::sleep_for(std::chrono::seconds(1));
+//	}
+//}
+//
+//// 消费者函数
+//void consumer() {
+//	while (true) {
+//		// 加锁
+//		std::unique_lock<std::mutex> lock(mtx);
+//
+//		// 如果缓冲区空，等待生产者生产
+//		while (count == 0) {
+//			std::cout << "Consumer: Buffer empty, waiting...\n";
+//			cond_empty.wait(lock); // 等待缓冲区非空
+//		}
+//
+//		// 消费数据
+//		count--;
+//		int item = buffer[count];
+//		std::cout << "Consumer: Consumed item " << item << "\n";
+//
+//		// 通知生产者缓冲区非满
+//		if (count == BUFFER_SIZE - 1) {
+//			cond_full.notify_one();
+//		}
+//
+//		// 解锁
+//		lock.unlock();
+//
+//		// 模拟消费耗时
+//		std::this_thread::sleep_for(std::chrono::seconds(2));
+//	}
+//}
+//
+//int main() {
+//	// 创建生产者和消费者线程
+//	std::thread prod_thread(producer);
+//	std::thread cons_thread(consumer);
+//
+//	// 主线程等待子线程结束
+//	prod_thread.join();
+//	cons_thread.join();
+//
+//	return 0;
+//}
