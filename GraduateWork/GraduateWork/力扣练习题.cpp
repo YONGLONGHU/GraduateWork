@@ -2229,49 +2229,105 @@ void TestList5()
 //
 //	return 0;
 //}
-#include <cassert>
+//#include <cassert>
+//#include <iostream>
+//using namespace std;
+//
+//bool Win(int* arr, string S, size_t lenth)
+//{
+//	int i = 0;
+//	int row = arr[0];
+//	int col = arr[1];
+//	while (i < lenth)  // 使用 lenth 控制循环
+//	{
+//		char c = S[i];
+//		if (c == 'W')
+//			col = col + 1;
+//		else if (c == 'A')
+//			row = row - 1;
+//		else if (c == 'S')
+//			col = col - 1;
+//		else if (c == 'D')
+//			row = row + 1;  // 修正为 row + 1
+//		i++;  // 更新 i
+//	}
+//	if (row == 0 && col == 0)
+//		return true;
+//	return false;
+//}
+//
+//int main() {
+//	int T;
+//	cin >> T;
+//	assert(T > 0);
+//	for (int i = 0; i < T; i++)
+//	{
+//		int arr[2];
+//		cin >> arr[0] >> arr[1];  // 读取初始位置
+//		string S;
+//		cin >> S;
+//		int len = S.length();
+//		bool flag = Win(arr, S, len);
+//		if (flag)
+//			cout << "YES" << endl;
+//		else
+//			cout << "NO" << endl;  // 修正输出逻辑
+//	}
+//	return 0;
+//}
+
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
-bool Win(int* arr, string S, size_t lenth)
-{
-	int i = 0;
-	int row = arr[0];
-	int col = arr[1];
-	while (i < lenth)  // 使用 lenth 控制循环
-	{
-		char c = S[i];
-		if (c == 'W')
-			col = col + 1;
-		else if (c == 'A')
-			row = row - 1;
-		else if (c == 'S')
-			col = col - 1;
-		else if (c == 'D')
-			row = row + 1;  // 修正为 row + 1
-		i++;  // 更新 i
+// 判断一个子串是否是回文
+bool isPalindrome(const string& s, int left, int right) {
+	while (left < right) {
+		if (s[left] != s[right]) {
+			return false;
+		}
+		left++;
+		right--;
 	}
-	if (row == 0 && col == 0)
-		return true;
-	return false;
+	return true;
+}
+
+// 计算一个字符串中回文子串的个数
+int countPalindromicSubstrings(const string& s) {
+	int n = s.length();
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			if (isPalindrome(s, i, j)) {
+				count++;
+			}
+		}
+	}
+	return count;
 }
 
 int main() {
-	int T;
-	cin >> T;
-	assert(T > 0);
-	for (int i = 0; i < T; i++)
-	{
-		int arr[2];
-		cin >> arr[0] >> arr[1];  // 读取初始位置
-		string S;
-		cin >> S;
-		int len = S.length();
-		bool flag = Win(arr, S, len);
-		if (flag)
-			cout << "YES" << endl;
-		else
-			cout << "NO" << endl;  // 修正输出逻辑
+	int n;
+	cout << "请输入字符串的个数: ";
+	cin >> n;
+
+	if (n <= 0) {
+		cout << "字符串的个数必须大于 0！" << endl;
+		return 1; // 退出程序
 	}
+
+	vector<string> strings(n);
+	cout << "请输入 " << n << " 个字符串:" << endl;
+	for (int i = 0; i < n; i++) {
+		cin >> strings[i];
+	}
+
+	cout << "每个字符串中回文子串的个数为:" << endl;
+	for (int i = 0; i < n; i++) {
+		int count = countPalindromicSubstrings(strings[i]);
+		cout << count << endl;
+	}
+
 	return 0;
 }
