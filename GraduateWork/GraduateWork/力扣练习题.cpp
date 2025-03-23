@@ -2229,3 +2229,49 @@ void TestList5()
 //
 //	return 0;
 //}
+#include <cassert>
+#include <iostream>
+using namespace std;
+
+bool Win(int* arr, string S, size_t lenth)
+{
+	int i = 0;
+	int row = arr[0];
+	int col = arr[1];
+	while (i < lenth)  // 使用 lenth 控制循环
+	{
+		char c = S[i];
+		if (c == 'W')
+			col = col + 1;
+		else if (c == 'A')
+			row = row - 1;
+		else if (c == 'S')
+			col = col - 1;
+		else if (c == 'D')
+			row = row + 1;  // 修正为 row + 1
+		i++;  // 更新 i
+	}
+	if (row == 0 && col == 0)
+		return true;
+	return false;
+}
+
+int main() {
+	int T;
+	cin >> T;
+	assert(T > 0);
+	for (int i = 0; i < T; i++)
+	{
+		int arr[2];
+		cin >> arr[0] >> arr[1];  // 读取初始位置
+		string S;
+		cin >> S;
+		int len = S.length();
+		bool flag = Win(arr, S, len);
+		if (flag)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;  // 修正输出逻辑
+	}
+	return 0;
+}
