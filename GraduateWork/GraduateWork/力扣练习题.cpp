@@ -2276,58 +2276,94 @@ void TestList5()
 //	return 0;
 //}
 
-#include <iostream>
-#include <vector>
-#include <string>
+//#include <iostream>
+//#include <vector>
+//#include <string>
+//using namespace std;
+//
+//// 判断一个子串是否是回文
+//bool isPalindrome(const string& s, int left, int right) {
+//	while (left < right) {
+//		if (s[left] != s[right]) {
+//			return false;
+//		}
+//		left++;
+//		right--;
+//	}
+//	return true;
+//}
+//
+//// 计算一个字符串中回文子串的个数
+//int countPalindromicSubstrings(const string& s) {
+//	int n = s.length();
+//	int count = 0;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = i; j < n; j++) {
+//			if (isPalindrome(s, i, j)) {
+//				count++;
+//			}
+//		}
+//	}
+//	return count;
+//}
+//
+//int main() {
+//	int n;
+//	cout << "请输入字符串的个数: ";
+//	cin >> n;
+//
+//	if (n <= 0) {
+//		cout << "字符串的个数必须大于 0！" << endl;
+//		return 1; // 退出程序
+//	}
+//
+//	vector<string> strings(n);
+//	cout << "请输入 " << n << " 个字符串:" << endl;
+//	for (int i = 0; i < n; i++) {
+//		cin >> strings[i];
+//	}
+//
+//	cout << "每个字符串中回文子串的个数为:" << endl;
+//	for (int i = 0; i < n; i++) {
+//		int count = countPalindromicSubstrings(strings[i]);
+//		cout << count << endl;
+//	}
+//
+//	return 0;
+//}
+#include<iostream>
 using namespace std;
-
-// 判断一个子串是否是回文
-bool isPalindrome(const string& s, int left, int right) {
-	while (left < right) {
-		if (s[left] != s[right]) {
-			return false;
-		}
-		left++;
-		right--;
-	}
-	return true;
+void Print(vector<string>str)
+{
+	for (auto s : str)
+		cout << s << endl;
 }
-
-// 计算一个字符串中回文子串的个数
-int countPalindromicSubstrings(const string& s) {
-	int n = s.length();
-	int count = 0;
-	for (int i = 0; i < n; i++) {
-		for (int j = i; j < n; j++) {
-			if (isPalindrome(s, i, j)) {
-				count++;
-			}
-		}
-	}
-	return count;
+void Print(int arr[], int len)
+{
+	for (int i = 0; i < len; ++i)
+		cout << arr[i] << " ";
+	cout << endl;
 }
-
-int main() {
-	int n;
-	cout << "请输入字符串的个数: ";
+int main()
+{
+	int n = 0;
+	cout << "输入插入数组的长度:";
 	cin >> n;
-
-	if (n <= 0) {
-		cout << "字符串的个数必须大于 0！" << endl;
-		return 1; // 退出程序
+	int* arr = new int[n];
+	cout << "输入数组的数值:";
+	for (int i = 0; i < n; ++i)
+		cin >> arr[i];
+	int T = 0;
+	cout << "输入检测字符串的个数:";
+	cin >> T;
+	vector<string>str(T);
+	for (auto& s : str)
+	{
+		cin >> s;
 	}
-
-	vector<string> strings(n);
-	cout << "请输入 " << n << " 个字符串:" << endl;
-	for (int i = 0; i < n; i++) {
-		cin >> strings[i];
-	}
-
-	cout << "每个字符串中回文子串的个数为:" << endl;
-	for (int i = 0; i < n; i++) {
-		int count = countPalindromicSubstrings(strings[i]);
-		cout << count << endl;
-	}
-
+	cout << "输入的数组为：";
+	Print(arr, n);
+	cout << "输入的字符串为："<<endl;
+	Print(str);
 	return 0;
 }
