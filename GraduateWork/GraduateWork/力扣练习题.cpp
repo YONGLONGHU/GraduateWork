@@ -2516,22 +2516,39 @@ void TestList5()
 //	return 0;
 //}
 
-template <class T>
-void ShowList(const T& t)
-{
-	cout << t << endl;
+//template <class T>
+//void ShowList(const T& t)
+//{
+//	cout << t << endl;
+//}
+//// 展开函数
+//template <class T, class ...Args>
+//void ShowList(T value, Args... args)
+//{
+//	cout << value << " ";
+//	ShowList(args...);
+//}
+//int main()
+//{
+//	ShowList(1);
+//	ShowList(1, 'A');
+//	ShowList(1, 'A', std::string("sort"));
+//	return 0;
+//}
+#include <iostream>
+#include <string>
+#include <utility>
+char* ptr = nullptr;
+void process(std::string&& s) {
+	std::cout << "Moved string: " << s << std::endl;
+	s = "vdsdhgaehra";
+	ptr = &s[0];
+	std::cout << ptr << endl;
 }
-// 展开函数
-template <class T, class ...Args>
-void ShowList(T value, Args... args)
-{
-	cout << value << " ";
-	ShowList(args...);
-}
-int main()
-{
-	ShowList(1);
-	ShowList(1, 'A');
-	ShowList(1, 'A', std::string("sort"));
+
+int main() {
+	std::string str = "hello";
+	process("ffffff");
+	std::cout << "After move: " << str << std::endl; // str 可能为空
 	return 0;
 }
