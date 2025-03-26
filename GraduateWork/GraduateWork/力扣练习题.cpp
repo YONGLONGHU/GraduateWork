@@ -2546,9 +2546,9 @@ void process(std::string&& s) {
 	std::cout << ptr << endl;
 }
 
-int main() {
-	std::string str = "hello";
-	process("ffffff");
-	std::cout << "After move: " << str << std::endl; // str 可能为空
-	return 0;
-}
+//int main() {
+//	std::string str = "hello";
+//	process("ffffff");
+//	std::cout << "After move: " << str << std::endl; // str 可能为空
+//	return 0;
+//}
