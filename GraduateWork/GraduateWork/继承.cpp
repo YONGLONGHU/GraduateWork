@@ -272,3 +272,47 @@ using namespace std;
 //	return 0;
 //}
 
+class animal {
+public:
+	animal() {
+		cout << "GOUZAO for animal" << endl;
+	}
+	virtual ~animal() {	// 虚析构函数; 如果为普通析构函数，不会调用子类的析构函数
+		cout << "XIGOU for animal" << endl;
+	}
+	// 纯虚析构
+	// virtual ~animal() = 0;
+	virtual void language() = 0;
+};
+// 纯虚析构需要有具体实现
+//animal::~animal() {
+//	cout << "XIGOU for animal" << endl;
+//}
+class cat :public animal {
+public:
+	cat(string name) {
+		cout << "GOUZAO for cat" << endl;
+		cat_name = new string(name);
+	}
+	~cat() {
+		if (cat_name != NULL) {
+			cout << "XIGOU for cat" << endl;
+			delete cat_name;
+			cat_name = NULL;
+		}
+	}
+	virtual void language() {
+		cout << *cat_name << " has language for cat." << endl;
+	}
+	string* cat_name;	// 堆区属性
+};
+void test() {
+	animal* a = new cat("tom");
+	a->language();
+	delete a;	// 父类指针在调用析构函数时不会调用子类中析构函数，导致子类如果有堆区属性，出现内存泄漏
+}
+
+int main() {
+	test();
+	return 0;
+}
