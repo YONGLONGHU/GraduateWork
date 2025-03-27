@@ -312,7 +312,7 @@ void test() {
 	delete a;	// 父类指针在调用析构函数时不会调用子类中析构函数，导致子类如果有堆区属性，出现内存泄漏
 }
 
-int main() {
-	test();
-	return 0;
-}
+//int main() {
+//	test();
+//	return 0;
+//}

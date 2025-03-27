@@ -236,3 +236,11 @@ int strcmp(const char* str1, const char* str2)
 //	free(ptr);
 //	return 0;
 //}
+int main()
+{
+	char a = -1;
+	signed char b = -1;
+	unsigned char c = -1;
+	printf("a=%d,b=%d,c=%d", a, b, c);
+	return 0;
+}

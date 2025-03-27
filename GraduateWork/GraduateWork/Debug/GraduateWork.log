@@ -1,2 +1,8 @@
-﻿  继承.cpp
-  GraduateWork.vcxproj -> D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\Debug\GraduateWork.exe
+﻿  C++内存管理.cpp
+  C++初步复习.cpp
+  map set.cpp
+  stack-queue.cpp
+  String类.cpp
+  继承.cpp
+  正在生成代码...
+D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\GraduateWork\String类.cpp : fatal error C1090: PDB API 调用失败，错误代码“3”: D:\BaiduNetdiskDownload\GraduateWork\GraduateWork\GraduateWork\Debug\vc142.pdb

@@ -2535,16 +2535,16 @@ void TestList5()
 //	ShowList(1, 'A', std::string("sort"));
 //	return 0;
 //}
-#include <iostream>
-#include <string>
-#include <utility>
-char* ptr = nullptr;
-void process(std::string&& s) {
-	std::cout << "Moved string: " << s << std::endl;
-	s = "vdsdhgaehra";
-	ptr = &s[0];
-	std::cout << ptr << endl;
-}
+//#include <iostream>
+//#include <string>
+//#include <utility>
+//char* ptr = nullptr;
+//void process(std::string&& s) {
+//	std::cout << "Moved string: " << s << std::endl;
+//	s = "vdsdhgaehra";
+//	ptr = &s[0];
+//	std::cout << ptr << endl;
+//}
 
 //int main() {
 //	std::string str = "hello";

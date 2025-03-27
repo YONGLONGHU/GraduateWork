@@ -514,9 +514,9 @@ public:
 
 int A::k = 0; // 初始化静态成员变量
 
-int main0() {
-    A::B b;
-    A a;
-    b.foo(a);
-    return 0;
-}
+//int main0() {
+//    A::B b;
+//    A a;
+//    b.foo(a);
+//    return 0;
+//}
